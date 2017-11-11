@@ -1,10 +1,10 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-10-15T21:51:42
+# Project created by QtCreator 2017-11-11T02:18:46
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,10 +25,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        stockportfolioapp.cpp \
+    stock.cpp
 
 HEADERS += \
-        mainwindow.h
+        stockportfolioapp.h \
+    stock.h
 
 FORMS += \
-        mainwindow.ui
+        stockportfolioapp.ui
