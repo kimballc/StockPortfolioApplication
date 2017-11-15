@@ -48,7 +48,4 @@ Stock::Stock(const string &tick, const string &name, double price, double change
  */
 void Stock::setTicker(const string &tick) { ticker = tick; }
 void Stock::setCompanyName(const string &name) { companyName = name; }
-void Stock::setCurrentPrice(double price) { currentPrice = price; }
-void Stock::setPercentChange(double change) { percentChange = change; }
-void Stock::setVolume(int vol) { volume = vol; }
 
