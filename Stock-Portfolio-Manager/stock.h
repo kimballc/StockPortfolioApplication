@@ -43,9 +43,6 @@ public:
     // Setters
     void setTicker(const string &);
     void setCompanyName(const string &);
-    void setCurrentPrice(double);
-    void setPercentChange(double);
-    void setVolume(int);
 
     // Destructor
     ~Stock();
