@@ -8,7 +8,7 @@
 #include "stockportfolioapp.h"
 #include <QApplication>
 
-//hello this a comment
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
