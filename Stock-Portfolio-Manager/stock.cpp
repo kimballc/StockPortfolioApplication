@@ -18,6 +18,7 @@ Stock::Stock()
     currentPrice = 0;
     percentChange = 0;
     volume = 0;
+    annualDividend = 0;
 }
 
 /*
@@ -31,14 +32,15 @@ Stock::Stock(const string &tick, const string &name) :
     currentPrice = 0;
     percentChange = 0;
     volume = 0;
+    annualDividend = 0;
 }
 
 /*
  * Five Parameter constructor, initializes
  * all data members through parameters
  */
-Stock::Stock(const string &tick, const string &name, double price, double change, int vol) :
-             ticker(tick), companyName(name), currentPrice(price), percentChange(change), volume(vol)
+Stock::Stock(const string &tick, const string &name, double price, double change, int vol, double dividend) :
+             ticker(tick), companyName(name), currentPrice(price), percentChange(change), volume(vol), annualDividend(dividend)
 {
 
 }
@@ -48,4 +50,8 @@ Stock::Stock(const string &tick, const string &name, double price, double change
  */
 void Stock::setTicker(const string &tick) { ticker = tick; }
 void Stock::setCompanyName(const string &name) { companyName = name; }
+void Stock::setCurrentPrice(double price) { currentPrice = price; }
+void Stock::setPercentChange(double change) { percentChange = change; }
+void Stock::setVolume(int vol) { volume = vol; }
+void Stock::setAnnualDividend(double dividend) { annualDividend = dividend; }
 
