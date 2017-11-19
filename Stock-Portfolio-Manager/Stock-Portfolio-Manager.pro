@@ -26,11 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         stockportfolioapp.cpp \
-    stock.cpp
+    stock.cpp \
+    stocklist.cpp
 
 HEADERS += \
         stockportfolioapp.h \
-    stock.h
+    stock.h \
+    stocklist.h
 
 FORMS += \
         stockportfolioapp.ui

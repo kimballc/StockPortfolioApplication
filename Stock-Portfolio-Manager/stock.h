@@ -24,6 +24,7 @@ private:
     double currentPrice;
     double percentChange;
     int    volume;
+    double annualDividend;
 
 public:
     // Default Constructor
@@ -31,18 +32,23 @@ public:
     // Two Parameter Constructor
     Stock(const string &, const string &);
     // Five Parameter Constructor
-    Stock(const string &, const string &, double, double, int);
+    Stock(const string &, const string &, double, double, int, double);
 
     // Getters
-    string getTicker()        { return ticker; }
-    string getCompanyName()   { return companyName; }
-    double getCurrentPrice()  { return currentPrice; }
-    double getPercentChange() { return percentChange; }
-    int    getVolume()        { return volume; }
+    string getTicker()         { return ticker; }
+    string getCompanyName()    { return companyName; }
+    double getCurrentPrice()   { return currentPrice; }
+    double getPercentChange()  { return percentChange; }
+    int    getVolume()         { return volume; }
+    double getAnnualDividend() { return annualDividend; }
 
     // Setters
     void setTicker(const string &);
     void setCompanyName(const string &);
+    void setCurrentPrice(double);
+    void setPercentChange(double);
+    void setVolume(int);
+    void setAnnualDividend(double);
 
     // Destructor
     ~Stock();
