@@ -25,6 +25,7 @@ private:
     double percentChange;
     int    volume;
     double annualDividend;
+    int    shares;
 
 public:
     // Default Constructor
@@ -32,7 +33,7 @@ public:
     // Two Parameter Constructor
     Stock(const string &, const string &);
     // Five Parameter Constructor
-    Stock(const string &, const string &, double, double, int, double);
+    Stock(const string &, const string &, double, double, int, double, int);
 
     // Getters
     string getTicker()         { return ticker; }
@@ -41,6 +42,7 @@ public:
     double getPercentChange()  { return percentChange; }
     int    getVolume()         { return volume; }
     double getAnnualDividend() { return annualDividend; }
+    int    getShares()         { return shares; }
 
     // Setters
     void setTicker(const string &);
@@ -49,9 +51,7 @@ public:
     void setPercentChange(double);
     void setVolume(int);
     void setAnnualDividend(double);
-
-    // Destructor
-    ~Stock();
+    void setShares(int);
 };
 
 #endif // STOCK_H
