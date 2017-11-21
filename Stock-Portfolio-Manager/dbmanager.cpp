@@ -65,7 +65,7 @@ void DbManager::_loadStocks()
                 myStock.setAnnualDividend(dividend);
                 myStock.setShares(shar);
 
-                list.addToMap(myStock);
+                stocks.addToMap(myStock);
             }
         }
 
@@ -86,7 +86,7 @@ bool DbManager::updateStock(string tick, double price, double change,
                             int shares)
 {
     // takes the stock object found, edits information
-    Stock *newStock = list.findStock(tick);
+    Stock *newStock = stocks.findStock(tick);
     newStock->setCurrentPrice(price);
     newStock->setPercentChange(change);
     newStock->setVolume(volume);
@@ -130,6 +130,20 @@ bool DbManager::updateStock(string tick, double price, double change,
     }
 
     return false;
+}
+
+/*
+ * Returns stock vector
+ */
+vector<Stock> &DbManager::getStocks()
+{
+    StockMap &stockMap = stocks.getStocks();
+
+    for (auto &s : stockMap)
+    {
+        stockVector.push_back(s.second);
+    }
+    return stockVector;
 }
 
 /*

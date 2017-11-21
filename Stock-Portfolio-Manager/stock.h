@@ -36,13 +36,13 @@ public:
     Stock(const string &, const string &, double, double, int, double, int);
 
     // Getters
-    string getTicker()         { return ticker; }
-    string getCompanyName()    { return companyName; }
-    double getCurrentPrice()   { return currentPrice; }
-    double getPercentChange()  { return percentChange; }
-    int    getVolume()         { return volume; }
-    double getAnnualDividend() { return annualDividend; }
-    int    getShares()         { return shares; }
+    string getTicker() const         { return ticker; }
+    string getCompanyName() const    { return companyName; }
+    double getCurrentPrice() const  { return currentPrice; }
+    double getPercentChange() const { return percentChange; }
+    int    getVolume()    const     { return volume; }
+    double getAnnualDividend() const { return annualDividend; }
+    int    getShares()   const      { return shares; }
 
     // Setters
     void setTicker(const string &);

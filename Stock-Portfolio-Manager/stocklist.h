@@ -24,14 +24,14 @@ private:
     StockMap stocks;        // stores a map of Stock objects
 
 public:
-
+    StockList();                            // default constructor
     StockList(const string &);              // one parameter constructor
 
     void addToMap(Stock);                   // adds a stock to the map
     void removeFromMap(Stock);              // removes a stock from the map
     Stock *findStock(const string &);       // finds and returns the stock
 
-    string getStockListName();              // returns the stocklist name
+    string getStockListName() const;              // returns the stocklist name
     StockMap &getStocks();                  // returns the whole stock map
 
     void setStockListName(const string &);  // can set the stock list name
