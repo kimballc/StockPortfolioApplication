@@ -9,6 +9,7 @@
 #define STOCKPORTFOLIOAPP_H
 
 #include <QMainWindow>
+#include "stocktablemodel.h"
 
 namespace Ui {
 class stockportfolioapp;
@@ -24,6 +25,7 @@ public:
 
 private:
     Ui::stockportfolioapp *ui;
+    StockTableModel *model;
 };
 
 #endif // STOCKPORTFOLIOAPP_H

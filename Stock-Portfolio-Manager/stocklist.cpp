@@ -10,6 +10,15 @@
 using std::cout; using std::endl;
 
 /*
+ * Default Constructor
+ */
+StockList::StockList() :
+           stockListName("")
+{
+
+}
+
+/*
  * Constructor
  */
 StockList::StockList(const string &name) :
@@ -57,7 +66,7 @@ Stock *StockList::findStock(const string &tick)
 /*
  * Returns the stock list name
  */
-string StockList::getStockListName()
+string StockList::getStockListName() const
 {
     return stockListName;
 }

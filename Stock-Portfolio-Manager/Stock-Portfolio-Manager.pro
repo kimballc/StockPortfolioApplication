@@ -28,13 +28,15 @@ SOURCES += \
         stockportfolioapp.cpp \
     stock.cpp \
     stocklist.cpp \
-    dbmanager.cpp
+    dbmanager.cpp \
+    stocktablemodel.cpp
 
 HEADERS += \
         stockportfolioapp.h \
     stock.h \
     stocklist.h \
-    dbmanager.h
+    dbmanager.h \
+    stocktablemodel.h
 
 FORMS += \
         stockportfolioapp.ui

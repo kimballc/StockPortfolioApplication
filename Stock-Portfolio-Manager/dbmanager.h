@@ -15,17 +15,21 @@
 #include <QtSql/QSqlRecord>
 #include <QString>
 #include <QVariant>
+#include <vector>
+using std::vector;
 
 class DbManager
 {
 private:
-    StockList list(const string &name);         // stock list object
+    StockList stocks;         // stock list object
+    vector<Stock> stockVector; // vector of stocks
     QSqlDatabase db;        // variable for the database
     void _loadStocks();     // loads the stocks from the database
 
 public:
     DbManager();                                                // constructor
     bool updateStock(string, double, double, int, double, int); // updates stock in db and local copy
+    vector<Stock> &getStocks();                                      // returns stock map
     ~DbManager();                                               // Destructor
 };
 
