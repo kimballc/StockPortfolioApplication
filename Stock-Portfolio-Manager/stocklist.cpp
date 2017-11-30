@@ -51,7 +51,7 @@ Stock *StockList::findStock(const string &tick)
     // loops through stocks
     for (auto &s : stocks)
     {
-        Stock stock = s.second;
+        Stock &stock = s.second;
 
         // if found, returns stock reference
         if (stock.getTicker() == tick)

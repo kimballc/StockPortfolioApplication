@@ -125,6 +125,8 @@ QVariant StockTableModel::data(const QModelIndex &index, int role) const
             return Qt::AlignRight + Qt::AlignVCenter;
         }
     }
+
+    return QVariant();
 }
 
 /*
