@@ -8,6 +8,7 @@
 #include "ui_stockportfolioapp.h"
 #include "stockportfolioapp.h"
 #include "newstocklistdialog.h"
+#include "logindialog.h"
 #include "dbmanager.h"
 #include <iterator>
 using std::iterator;
@@ -28,6 +29,7 @@ void stockportfolioapp::addStockListsToComboBox()
 
     ui->stockListBox->clear();
     ui->stockListBox->addItems(stockListNames);
+
 }
 
 /*
@@ -57,6 +59,8 @@ stockportfolioapp::stockportfolioapp(QWidget *parent) :
 
     // sets message timer
     this->setMessageTimer();
+
+    this->openLoginDialog();
 }
 
 /*
@@ -132,3 +136,42 @@ void stockportfolioapp::openNewStockListDialog()
     }
 }
 
+/*
+ * Opens the dialog for adding a new stock list
+ */
+void stockportfolioapp::openLoginDialog()
+{
+    // create new dialog window object
+    LoginDialog loginD(this);
+
+    // sets modal to true, disabled while open
+    loginD.setModal(true);
+
+    // if window successfully launches...
+    if (loginD.exec() == QDialog::Accepted)
+    {
+        string username = loginD.getUsername();
+        string password = loginD.getPassword();
+
+        UserManager um;
+        um.initUser(username, password);
+        um.login(username, password);
+    }
+}
+
+/*
+ * opens new stock list dialog
+ */
+void stockportfolioapp::on_actionNew_List_triggered()
+{
+    this->openNewStockListDialog();
+}
+
+
+/*
+ * opens log in dialog
+ */
+void stockportfolioapp::on_actionLog_In_2_triggered()
+{
+    this->openLoginDialog();
+}

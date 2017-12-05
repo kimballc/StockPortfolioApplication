@@ -6,7 +6,11 @@ INPUT(
 ./release\dbmanager.o
 ./release\stocktablemodel.o
 ./release\newstocklistdialog.o
+./release\logindialog.o
+./release\user.o
+./release\usermanager.o
 ./release\moc_stockportfolioapp.o
 ./release\moc_stocktablemodel.o
 ./release\moc_newstocklistdialog.o
+./release\moc_logindialog.o
 );

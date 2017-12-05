@@ -20,6 +20,7 @@ class User
 {
 public:
     //Constructors
+    User();                                             // default constructor
     User(const string &, const string &);               //Two paramerer constructor
     User(int, const string &, const string &);          //Three parameter constructor
     ~User();                                            //Destructor
@@ -33,7 +34,7 @@ public:
     //Setters
     void setUserID(int);                                //set the ID of the User
     void setUsername(const string &);                   //set the username of the user
-    void setPassHash(int);                              //set the hashed password of the user
+    void setPassHash(const string &);                              //set the hashed password of the user
     //void setStockLists();
 
     //Helper Functions
