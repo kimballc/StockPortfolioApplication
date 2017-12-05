@@ -77,13 +77,27 @@
     <property name="title">
      <string>Options</string>
     </property>
-    <addaction name="actionEdit_List"/>
-    <addaction name="actionNew_List"/>
     <addaction name="separator"/>
     <addaction name="actionLogout"/>
     <addaction name="actionLogout_Close_Application"/>
    </widget>
+   <widget class="QMenu" name="menuList">
+    <property name="title">
+     <string>List</string>
+    </property>
+    <addaction name="actionEdit"/>
+    <addaction name="actionNew"/>
+    <addaction name="actionNew_2"/>
+   </widget>
+   <widget class="QMenu" name="menuData">
+    <property name="title">
+     <string>Data</string>
+    </property>
+    <addaction name="actionRefresh"/>
+   </widget>
    <addaction name="menuOptions"/>
+   <addaction name="menuList"/>
+   <addaction name="menuData"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -112,6 +126,26 @@
   <action name="actionLogout_Close_Application">
    <property name="text">
     <string>Logout &amp; Close Application</string>
+   </property>
+  </action>
+  <action name="actionEdit">
+   <property name="text">
+    <string>Edit</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>Remove</string>
+   </property>
+  </action>
+  <action name="actionNew_2">
+   <property name="text">
+    <string>New</string>
+   </property>
+  </action>
+  <action name="actionRefresh">
+   <property name="text">
+    <string>Refresh</string>
    </property>
   </action>
  </widget>

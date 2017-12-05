@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\stockportfolioapp.o
+./debug\stock.o
+./debug\stocklist.o
+./debug\dbmanager.o
+./debug\stocktablemodel.o
+./debug\newstocklistdialog.o
+./debug\moc_stockportfolioapp.o
+./debug\moc_stocktablemodel.o
+./debug\moc_newstocklistdialog.o
+);

@@ -8,6 +8,11 @@
 #ifndef DBMANAGER_H
 #define DBMANAGER_H
 
+#include "QtNetwork/QNetworkAccessManager"
+#include "QtNetwork/QNetworkRequest"
+#include "QtNetwork/QNetworkReply"
+#include "QUrl"
+#include "QEventLoop"
 #include "stock.h"
 #include "stocklist.h"
 #include <QtSql/QSqlDatabase>
@@ -17,19 +22,34 @@
 #include <QVariant>
 #include <vector>
 using std::vector;
+#include <map>
+using std::map;
+
+typedef map<string, StockList> StockListMap;
 
 class DbManager
 {
 private:
-    StockList stocks;         // stock list object
-    vector<Stock> stockVector; // vector of stocks
-    QSqlDatabase db;        // variable for the database
-    void _loadStocks();     // loads the stocks from the database
+    StockList stocks;                   // stock list object
+    vector<Stock> stockVector;          // vector of stocks
+    vector<StockList> stockListVector;  // vector of stock lists
+    vector<string> nasdaqVector;        // nasdaq vector
+    QSqlDatabase db;                    // variable for the database
+    QSqlDatabase db2;                   // variable for second db
+    StockListMap stockLists;            // map of stock lists
+    string url;                         // url for nasdaq
+    StockList _loadStocks(unsigned);    // loads the stocks from the database
+    void _loadStockLists();             // loads stock list
+
 
 public:
     DbManager();                                                // constructor
     bool updateStock(string, double, double, int, double, int); // updates stock in db and local copy
-    vector<Stock> &getStocks();                                      // returns stock map
+    vector<Stock> &getStocks();                                 // returns stock map
+    void addList(const string &, vector<string>);                    // adds a new list to the map of stock lists
+    vector<StockList> &getStockLists();                         // get stock lists
+    vector<string> splitString(const string &, char);           // chops up nasdaq data
+    void nasdaq();                                              // nasdaq method
     ~DbManager();                                               // Destructor
 };
 
