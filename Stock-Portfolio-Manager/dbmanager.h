@@ -8,6 +8,7 @@
 #ifndef DBMANAGER_H
 #define DBMANAGER_H
 
+#include "user.h"
 #include "QtNetwork/QNetworkAccessManager"
 #include "QtNetwork/QNetworkRequest"
 #include "QtNetwork/QNetworkReply"
@@ -30,6 +31,7 @@ typedef map<string, StockList> StockListMap;
 class DbManager
 {
 private:
+    User u;                             // creates user object
     StockList stocks;                   // stock list object
     vector<Stock> stockVector;          // vector of stocks
     vector<StockList> stockListVector;  // vector of stock lists
@@ -39,12 +41,12 @@ private:
     StockListMap stockLists;            // map of stock lists
     string url;                         // url for nasdaq
     StockList _loadStocks(unsigned);    // loads the stocks from the database
-    void _loadStockLists();             // loads stock list
+    void _loadStockLists(unsigned);             // loads stock list
 
 
 public:
     DbManager();                                                // constructor
-    bool updateStock(string, double, double, int, double, int); // updates stock in db and local copy
+    bool updateStock(const string &, double, double, int, double, int); // updates stock in db and local copy
     vector<Stock> &getStocks();                                 // returns stock map
     void addList(const string &, vector<string>);                    // adds a new list to the map of stock lists
     vector<StockList> &getStockLists();                         // get stock lists

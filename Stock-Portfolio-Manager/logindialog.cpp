@@ -17,13 +17,12 @@ LoginDialog::LoginDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    manager = new UserManager(this->getUsername(), this->getPassword());
+    manager.initUser(this->getUsername(), this->getPassword());
 }
 
 LoginDialog::~LoginDialog()
 {
     delete ui;
-    delete manager;
 }
 
 string LoginDialog::getUsername()
@@ -42,11 +41,13 @@ void LoginDialog::done(int result)
     {
         QString username = ui->usernameBox->text();
         QString password = ui->passwordBox->text();
+        string un = username.toStdString();
+        string pass = password.toStdString();
         //if the entered username and password are not empty
         if(!username.isEmpty() && !password.isEmpty())
         {
             //check for successfully matching login info
-            if(manager.login())
+            if(manager.login(un, pass))
             {
                 QDialog::done(result);
             }
@@ -59,6 +60,7 @@ void LoginDialog::done(int result)
                             tr("Alert"),
                             tr("Invalid Login"));
                 ui->passwordBox->clear();
+                ui->usernameBox->setFocus();
             }
         }
         //some field is left blank
@@ -69,6 +71,7 @@ void LoginDialog::done(int result)
                         tr("Alert"),
                         tr("Fields cannot be blank"));
             ui->passwordBox->clear();
+            ui->passwordBox->setFocus();
         }
     }
     //cancel, close or esc was pressed

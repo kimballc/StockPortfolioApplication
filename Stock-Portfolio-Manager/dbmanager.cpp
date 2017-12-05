@@ -11,6 +11,10 @@ using std::istringstream;
 #include <iostream>
 using std::cout; using std::endl;
 
+
+/*
+ * Constructor
+ */
 DbManager::DbManager() : url("http://www.nasdaq.com/quotedll/quote.dll?page=dynamic&mode=data&&symbol=WEX&symbol=IDXX&random=0.1696504272217375")
 {
 
@@ -23,7 +27,7 @@ DbManager::DbManager() : url("http://www.nasdaq.com/quotedll/quote.dll?page=dyna
     db2.setDatabaseName("Driver={ODBC Driver 13 for SQL Server};Server=tcp:portfolio-svr.database.windows.net,1433;Database=StockPortfolioDB;Uid=cs245;Pwd=Thomas123;Encrypt=yes;MultipleActiveResultSets=True;TrustServerCertificate=no;Connection Timeout=30;");
 
     // loads stocks from database
-    this->_loadStockLists();
+    this->_loadStockLists(u.getUserID());
 }
 
 /*
@@ -49,7 +53,7 @@ vector<string> DbManager::splitString(const string &text, char sep)
 }
 
 /*
- * Nasdaq code
+ * parses Nasdaq code
  */
 void DbManager::nasdaq()
 {
@@ -162,8 +166,10 @@ StockList DbManager::_loadStocks(unsigned stockListID)
 /*
  * Loads stock lists from db and puts them in map
  */
-void DbManager::_loadStockLists()
+void DbManager::_loadStockLists(unsigned uID)
 {
+    QVariant userID = uID;
+
     // opens database connection
     bool ok = db.open();
 
@@ -176,9 +182,9 @@ void DbManager::_loadStockLists()
 
         // create prepared statement
         // gets stocks from Stock table, orders by ticker
-        query.prepare("SELECT * FROM StockList ORDER BY stockListName;");  // WHERE UserID = ?
+        query.prepare("SELECT * FROM StockList ORDER BY stockListName WHERE UserID = ?;");
 
-        //query.bindValue(0, UserID);
+        query.bindValue(0, userID);
 
         // if SQL query is okay...
         if (query.exec())
@@ -211,7 +217,7 @@ void DbManager::_loadStockLists()
  /*
   * updates stock information
   */
-bool DbManager::updateStock(string tick, double price, double change,
+bool DbManager::updateStock(const string &tick, double price, double change,
                             int volume, double dividend,
                             int shares)
 {

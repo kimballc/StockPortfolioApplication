@@ -18,25 +18,29 @@ using std::string;
 #include <QtSql/QSqlRecord>
 #include <QString>
 #include <QVariant>
-#include <vector>
 
 class UserManager
 {
 public:
     //Constructors
-    UserManager(const string &, const string &);        //Two parameter constructor
+    UserManager();                                      // Default constructor
+    //UserManager(const string &, const string &);        //Two parameter constructor
     ~UserManager();                                     //Destructor
 
     //Getter
-    User getUser(){return User;}                        //returns the user object that is being managed
+    User getUser(){ return user; }                        //returns the user object that is being managed
 
     //Helper Functions
     void registerUser(User);                            //register a user to the system
-    bool login();                                       //log the user into the system
+    bool login(const string &, const string &);                                       //log the user into the system
+    void initUser(const string &, const string &);      // initializes user data member
+
 private:
-    User user;                                          //map to store users
+    User user;                                          // user
     QSqlDatabase db;                                    // variable for the database
-    string hashPassword(const string &);                //hash the password of the user
+    string _hashPassword(const string &);               //hash the password of the user
+    bool _usernameCheck(const string &);                // checks username
+    bool _passCheck(const string &);                    // checks pass
 };
 
 #endif // USERMANAGER_H

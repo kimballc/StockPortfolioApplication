@@ -25,10 +25,10 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="2">
-     <widget class="QPushButton" name="removeListButton">
+    <item row="0" column="4">
+     <widget class="QPushButton" name="refreshButton">
       <property name="text">
-       <string>Remove List</string>
+       <string>Refresh</string>
       </property>
      </widget>
     </item>
@@ -39,10 +39,10 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="4">
-     <widget class="QPushButton" name="refreshButton">
+    <item row="0" column="2">
+     <widget class="QPushButton" name="removeListButton">
       <property name="text">
-       <string>Refresh</string>
+       <string>Remove List</string>
       </property>
      </widget>
     </item>
@@ -77,6 +77,8 @@
     <property name="title">
      <string>Options</string>
     </property>
+    <addaction name="separator"/>
+    <addaction name="actionLog_In_2"/>
     <addaction name="separator"/>
     <addaction name="actionLogout"/>
     <addaction name="actionLogout_Close_Application"/>
@@ -146,6 +148,16 @@
   <action name="actionRefresh">
    <property name="text">
     <string>Refresh</string>
+   </property>
+  </action>
+  <action name="actionLog_Out">
+   <property name="text">
+    <string>Log Out</string>
+   </property>
+  </action>
+  <action name="actionLog_In_2">
+   <property name="text">
+    <string>Log In</string>
    </property>
   </action>
  </widget>

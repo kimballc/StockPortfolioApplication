@@ -28,6 +28,8 @@ public:
 private slots:
     void on_newListButton_clicked();
     void on_setTimer();
+    void on_actionNew_List_triggered();
+    void on_actionLog_In_2_triggered();
 
 private:
     Ui::stockportfolioapp *ui;
@@ -37,6 +39,7 @@ private:
     void addStockListsToComboBox();  // adds the stocklists to the drop-down
     void setMessageTimer();          // sets message timer
     void openNewStockListDialog();   // opens the dialog for adding a new stock list
+    void openLoginDialog();          // opens the login dialog box
 
 };
 

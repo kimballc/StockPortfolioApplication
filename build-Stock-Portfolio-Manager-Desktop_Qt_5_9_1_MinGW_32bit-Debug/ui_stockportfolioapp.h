@@ -38,13 +38,15 @@ public:
     QAction *actionNew;
     QAction *actionNew_2;
     QAction *actionRefresh;
+    QAction *actionLog_Out;
+    QAction *actionLog_In_2;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QComboBox *stockListBox;
     QPushButton *editListButton;
-    QPushButton *removeListButton;
-    QPushButton *newListButton;
     QPushButton *refreshButton;
+    QPushButton *newListButton;
+    QPushButton *removeListButton;
     QTableView *stockTableView;
     QMenuBar *menuBar;
     QMenu *menuOptions;
@@ -74,6 +76,10 @@ public:
         actionNew_2->setObjectName(QStringLiteral("actionNew_2"));
         actionRefresh = new QAction(stockportfolioapp);
         actionRefresh->setObjectName(QStringLiteral("actionRefresh"));
+        actionLog_Out = new QAction(stockportfolioapp);
+        actionLog_Out->setObjectName(QStringLiteral("actionLog_Out"));
+        actionLog_In_2 = new QAction(stockportfolioapp);
+        actionLog_In_2->setObjectName(QStringLiteral("actionLog_In_2"));
         centralWidget = new QWidget(stockportfolioapp);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
@@ -90,20 +96,20 @@ public:
 
         gridLayout->addWidget(editListButton, 0, 1, 1, 1);
 
-        removeListButton = new QPushButton(centralWidget);
-        removeListButton->setObjectName(QStringLiteral("removeListButton"));
+        refreshButton = new QPushButton(centralWidget);
+        refreshButton->setObjectName(QStringLiteral("refreshButton"));
 
-        gridLayout->addWidget(removeListButton, 0, 2, 1, 1);
+        gridLayout->addWidget(refreshButton, 0, 4, 1, 1);
 
         newListButton = new QPushButton(centralWidget);
         newListButton->setObjectName(QStringLiteral("newListButton"));
 
         gridLayout->addWidget(newListButton, 0, 3, 1, 1);
 
-        refreshButton = new QPushButton(centralWidget);
-        refreshButton->setObjectName(QStringLiteral("refreshButton"));
+        removeListButton = new QPushButton(centralWidget);
+        removeListButton->setObjectName(QStringLiteral("removeListButton"));
 
-        gridLayout->addWidget(refreshButton, 0, 4, 1, 1);
+        gridLayout->addWidget(removeListButton, 0, 2, 1, 1);
 
         stockTableView = new QTableView(centralWidget);
         stockTableView->setObjectName(QStringLiteral("stockTableView"));
@@ -136,6 +142,8 @@ public:
         menuBar->addAction(menuList->menuAction());
         menuBar->addAction(menuData->menuAction());
         menuOptions->addSeparator();
+        menuOptions->addAction(actionLog_In_2);
+        menuOptions->addSeparator();
         menuOptions->addAction(actionLogout);
         menuOptions->addAction(actionLogout_Close_Application);
         menuList->addAction(actionEdit);
@@ -159,10 +167,12 @@ public:
         actionNew->setText(QApplication::translate("stockportfolioapp", "Remove", Q_NULLPTR));
         actionNew_2->setText(QApplication::translate("stockportfolioapp", "New", Q_NULLPTR));
         actionRefresh->setText(QApplication::translate("stockportfolioapp", "Refresh", Q_NULLPTR));
+        actionLog_Out->setText(QApplication::translate("stockportfolioapp", "Log Out", Q_NULLPTR));
+        actionLog_In_2->setText(QApplication::translate("stockportfolioapp", "Log In", Q_NULLPTR));
         editListButton->setText(QApplication::translate("stockportfolioapp", "Edit List", Q_NULLPTR));
-        removeListButton->setText(QApplication::translate("stockportfolioapp", "Remove List", Q_NULLPTR));
-        newListButton->setText(QApplication::translate("stockportfolioapp", "New List", Q_NULLPTR));
         refreshButton->setText(QApplication::translate("stockportfolioapp", "Refresh", Q_NULLPTR));
+        newListButton->setText(QApplication::translate("stockportfolioapp", "New List", Q_NULLPTR));
+        removeListButton->setText(QApplication::translate("stockportfolioapp", "Remove List", Q_NULLPTR));
         menuOptions->setTitle(QApplication::translate("stockportfolioapp", "Options", Q_NULLPTR));
         menuList->setTitle(QApplication::translate("stockportfolioapp", "List", Q_NULLPTR));
         menuData->setTitle(QApplication::translate("stockportfolioapp", "Data", Q_NULLPTR));

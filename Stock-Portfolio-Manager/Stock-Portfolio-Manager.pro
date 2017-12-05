@@ -30,7 +30,10 @@ SOURCES += \
     stocklist.cpp \
     dbmanager.cpp \
     stocktablemodel.cpp \
-    newstocklistdialog.cpp
+    newstocklistdialog.cpp \
+    logindialog.cpp \
+    user.cpp \
+    usermanager.cpp
 
 HEADERS += \
         stockportfolioapp.h \
@@ -38,8 +41,12 @@ HEADERS += \
     stocklist.h \
     dbmanager.h \
     stocktablemodel.h \
-    newstocklistdialog.h
+    newstocklistdialog.h \
+    logindialog.h \
+    user.h \
+    usermanager.h
 
 FORMS += \
         stockportfolioapp.ui \
-    newstocklistdialog.ui
+    newstocklistdialog.ui \
+    logindialog.ui

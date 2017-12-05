@@ -10,6 +10,13 @@
 #include <utility>
 
 /*
+ * Default constructor
+ */
+User::User()
+{
+}
+
+/*
  * Two Paramere Constructor
  * Initializes username and password hash
  */
@@ -36,11 +43,6 @@ User::User(int id, const string &name, const string &pass) :
  */
 User::~User()
 {
-    //Data Members
-    delete userID;
-    delete username;
-    delete passHash;
-    delete stockLists;
 }
 
 /*
@@ -57,70 +59,6 @@ void User::setUserID(int id)
  */
 void User::setUsername(const string &name)
 {
-    //requirements flag variables
-    bool hasUpper = false;
-    bool hasLower = false;
-    bool hasDigit = false;
-    bool hasSpecial = false;
-
-    //usernames must be b/w 6-16 characters long
-    if((name.length() < 6) || (name.length() > 16))
-    {
-        throw std::length_error("Username must be between 6-16 characters long");
-    }
-
-    //loop through the username to check for requirments
-    for(char c : name)
-    {
-        //check for uppercase
-        if(isupper(c))
-        {
-            hasUpper = true;
-        }
-
-        //check for lowercase
-        if(islower(c))
-        {
-            hasLower = true;
-        }
-
-        //check for digit
-        if(isdigit(c))
-        {
-            hasDigit = true;
-        }
-
-        //check for special characters
-        if(!isalnum(c))
-        {
-            hasSpecial = true;
-        }
-    }
-
-    //usernames must contain at least 1 uppercase character
-    if(hasUpper == false)
-    {
-        throw std::invalid_argument("Username must contain at least 1 uppercase letter");
-    }
-
-    //usernames must contain at least 1 lowercase character
-    if(hasLower == false)
-    {
-        throw std::invalid_argument("Username must contain at least 1 lower case letter");
-    }
-
-    //usernames must contain at least 1 digit
-    if(hasDigit == false)
-    {
-        throw std::invalid_argument("Username must contain at least 1 digit");
-    }
-
-    //usernames may not contain special characters
-    if(hasSpecial == true)
-    {
-        throw std::invalid_argument("Username may not contain any special characters");
-    }
-
     username = name;
 }
 
@@ -128,16 +66,9 @@ void User::setUsername(const string &name)
  * Sets the hashed password of the User
  * Checks to see if the hashed password is empty
  */
-void User::setPassHash(string pass)
+void User::setPassHash(const string &pass)
 {
-    if(pass.empty())
-    {
-        throw std::invalid_argument("Hashed Password may not be blank");
-    }
-    else
-    {
-        passHash = pass;
-    }
+    passHash = pass;
 }
 
 /*
