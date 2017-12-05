@@ -10,13 +10,45 @@
 #include <utility>
 
 /*
- * Two Parameter Constructor
+ * Two Paramere Constructor
+ * Initializes username and password hash
+ */
+User::User(const std::string &name, const std::string &pass)
+{
+    this->setUsername(name);
+    this->setPassHash(pass);
+}
+
+/*
+ * Three Parameter Constructor
  * Initializes all data members
  */
-User::User(const string &name, const string &pass) :
-    username(name)
+User::User(int id, const string &name, const string &pass) :
+    userID(id)
 {
-    setPassHash(pass);
+    this->setUsername(name);
+    this->setPassHash(pass);
+}
+
+/*
+ * Destructor
+ * Removes all data members from memory
+ */
+User::~User()
+{
+    //Data Members
+    delete userID;
+    delete username;
+    delete passHash;
+    delete stockLists;
+}
+
+/*
+ * Sets the ID of the user
+ */
+void User::setUserID(int id)
+{
+    userID = id;
 }
 
 /*
@@ -96,7 +128,7 @@ void User::setUsername(const string &name)
  * Sets the hashed password of the User
  * Checks to see if the hashed password is empty
  */
-void User::setPassHash(const string &pass)
+void User::setPassHash(string pass)
 {
     if(pass.empty())
     {
