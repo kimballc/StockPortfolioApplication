@@ -46,7 +46,7 @@ void NewStockListDialog::done(int result)
         else
         {
             // warns user that box is empty
-            QMessageBox::warning(this, tr("Alert"), tr("Cannot leave name field empty."));
+            QMessageBox::warning(this->, tr("Alert"), tr("Cannot leave fields empty."));
             // sets focus
             ui->stockListNameBox->setFocus();
         }
