@@ -1,0 +1,12 @@
+INPUT(
+./release\main.o
+./release\stockportfolioapp.o
+./release\stock.o
+./release\stocklist.o
+./release\dbmanager.o
+./release\stocktablemodel.o
+./release\newstocklistdialog.o
+./release\moc_stockportfolioapp.o
+./release\moc_stocktablemodel.o
+./release\moc_newstocklistdialog.o
+);

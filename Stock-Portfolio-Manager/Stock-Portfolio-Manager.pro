@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,14 +29,17 @@ SOURCES += \
     stock.cpp \
     stocklist.cpp \
     dbmanager.cpp \
-    stocktablemodel.cpp
+    stocktablemodel.cpp \
+    newstocklistdialog.cpp
 
 HEADERS += \
         stockportfolioapp.h \
     stock.h \
     stocklist.h \
     dbmanager.h \
-    stocktablemodel.h
+    stocktablemodel.h \
+    newstocklistdialog.h
 
 FORMS += \
-        stockportfolioapp.ui
+        stockportfolioapp.ui \
+    newstocklistdialog.ui
