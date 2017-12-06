@@ -43,7 +43,7 @@ void NewStockListDialog::done(int result)
             QDialog::done(result);
         }
         // if it is empty...
-        else
+        else if (stockListName.isEmpty())
         {
             // warns user that box is empty
             QMessageBox::warning(this, tr("Alert"), tr("Cannot leave fields empty."));

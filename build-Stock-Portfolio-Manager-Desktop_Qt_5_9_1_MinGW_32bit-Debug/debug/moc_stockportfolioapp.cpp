@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_stockportfolioapp_t {
     QByteArrayData data[6];
-    char stringdata0[112];
+    char stringdata0[104];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,16 +32,16 @@ struct qt_meta_stringdata_stockportfolioapp_t {
 static const qt_meta_stringdata_stockportfolioapp_t qt_meta_stringdata_stockportfolioapp = {
     {
 QT_MOC_LITERAL(0, 0, 17), // "stockportfolioapp"
-QT_MOC_LITERAL(1, 18, 24), // "on_newListButton_clicked"
-QT_MOC_LITERAL(2, 43, 0), // ""
-QT_MOC_LITERAL(3, 44, 11), // "on_setTimer"
-QT_MOC_LITERAL(4, 56, 27), // "on_actionNew_List_triggered"
-QT_MOC_LITERAL(5, 84, 27) // "on_actionLog_In_2_triggered"
+QT_MOC_LITERAL(1, 18, 11), // "on_setTimer"
+QT_MOC_LITERAL(2, 30, 0), // ""
+QT_MOC_LITERAL(3, 31, 22), // "on_actionNew_triggered"
+QT_MOC_LITERAL(4, 54, 24), // "on_actionLogin_triggered"
+QT_MOC_LITERAL(5, 79, 24) // "on_newListButton_clicked"
 
     },
-    "stockportfolioapp\0on_newListButton_clicked\0"
-    "\0on_setTimer\0on_actionNew_List_triggered\0"
-    "on_actionLog_In_2_triggered"
+    "stockportfolioapp\0on_setTimer\0\0"
+    "on_actionNew_triggered\0on_actionLogin_triggered\0"
+    "on_newListButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -79,10 +79,10 @@ void stockportfolioapp::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         stockportfolioapp *_t = static_cast<stockportfolioapp *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->on_newListButton_clicked(); break;
-        case 1: _t->on_setTimer(); break;
-        case 2: _t->on_actionNew_List_triggered(); break;
-        case 3: _t->on_actionLog_In_2_triggered(); break;
+        case 0: _t->on_setTimer(); break;
+        case 1: _t->on_actionNew_triggered(); break;
+        case 2: _t->on_actionLogin_triggered(); break;
+        case 3: _t->on_newListButton_clicked(); break;
         default: ;
         }
     }

@@ -18,8 +18,7 @@ UserManager::UserManager()
 {
     //create Database connection object
     db = QSqlDatabase::addDatabase("QODBC");
-    db.setDatabaseName("Driver={ODBC Driver 13 for SQL Server};Server=tcp:portfolio-svr.database.windows.net,1433;Database=StockPortfolioDB;Uid=cs245;Pwd=Thomas123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;");
-
+    db.setDatabaseName("Driver={ODBC Driver 13 for SQL Server};Server=tcp:portfolio-svr.database.windows.net,1433;Database=StockPortfolioDB;Uid=cs245;Pwd=Thomas123;Encrypt=yes;MultipleActiveResultSets=True;TrustServerCertificate=no;Connection Timeout=30;");
 
 }
 
@@ -80,7 +79,7 @@ bool UserManager::login(const string &un, const string &pass)
          QSqlQuery query;
          query.setForwardOnly(true);
 
-         QString sql = "SELECT password FROM [User] WHERE username = ?";
+         QString sql = "SELECT userID, password FROM [User] WHERE username = ?";
 
          // create prepared statement
          //gets password from User table where the username is that of the user object
@@ -96,15 +95,17 @@ bool UserManager::login(const string &un, const string &pass)
              while(query.next())
              {
                  //store data in local variables
-                 string pw = query.value(0).toString().toStdString();
+                 unsigned uID = query.value(0).toUInt();
+                 string pw = query.value(1).toString().toStdString();
 
                  //if the hashed password entered by the user matches the one in the Database for the given username
                  if(hashedPass == pw)
                  {
+                     dbm.loadStockLists(uID);
                      //set the ID of the user and return
                      return true;
                  }
-                 //if they do not exit
+                 //if they do not, exit
                  else
                  {
                      return false;

@@ -17,17 +17,16 @@ using std::cout; using std::endl;
  */
 DbManager::DbManager() : url("http://www.nasdaq.com/quotedll/quote.dll?page=dynamic&mode=data&&symbol=WEX&symbol=IDXX&random=0.1696504272217375")
 {
-
     // creates a dabase connection object
     db = QSqlDatabase::addDatabase("QODBC");
     db.setDatabaseName("Driver={ODBC Driver 13 for SQL Server};Server=tcp:portfolio-svr.database.windows.net,1433;Database=StockPortfolioDB;Uid=cs245;Pwd=Thomas123;Encrypt=yes;MultipleActiveResultSets=True;TrustServerCertificate=no;Connection Timeout=30;");
 
     // creates a second dabase connection object
-    db2 = QSqlDatabase::addDatabase("QODBC");
-    db2.setDatabaseName("Driver={ODBC Driver 13 for SQL Server};Server=tcp:portfolio-svr.database.windows.net,1433;Database=StockPortfolioDB;Uid=cs245;Pwd=Thomas123;Encrypt=yes;MultipleActiveResultSets=True;TrustServerCertificate=no;Connection Timeout=30;");
+    //db2 = QSqlDatabase::addDatabase("QODBC");
+    //db2.setDatabaseName("Driver={ODBC Driver 13 for SQL Server};Server=tcp:portfolio-svr.database.windows.net,1433;Database=StockPortfolioDB;Uid=cs245;Pwd=Thomas123;Encrypt=yes;MultipleActiveResultSets=True;TrustServerCertificate=no;Connection Timeout=30;");
 
     // loads stocks from database
-    this->_loadStockLists(u.getUserID());
+    //this->loadStockLists();
 }
 
 /*
@@ -83,15 +82,9 @@ void DbManager::addList(const string &, vector<string>)
 /*
  * returns a vector of stock lists
  */
-vector<StockList> &DbManager::getStockLists()
+StockListMap &DbManager::getStockLists()
 {
-    for (auto &sl : stockLists)
-    {
-        StockList stockList = sl.second;
-        stockListVector.push_back(stockList);
-    }
-
-    return stockListVector;
+    return stockLists;
 }
 
 /*
@@ -102,7 +95,7 @@ StockList DbManager::_loadStocks(unsigned stockListID)
     StockList sl;
 
     // opens database connection
-    bool ok = db2.open();
+    bool ok = true;//db.open();
 
     // if the database connection is successful...
     if(ok)
@@ -160,18 +153,18 @@ StockList DbManager::_loadStocks(unsigned stockListID)
         // informs user there were connection issues
         cout << "There were issues connecting..." << endl;
     }
-    return stocks;
+    return sl;
 }
 
 /*
  * Loads stock lists from db and puts them in map
  */
-void DbManager::_loadStockLists(unsigned uID)
+void DbManager::loadStockLists(unsigned uID)
 {
-    QVariant userID = uID;
+    unsigned userID = uID;
 
     // opens database connection
-    bool ok = db.open();
+    bool ok = true;//db.open();
 
     // if the database connection is successful...
     if(ok)
@@ -182,7 +175,7 @@ void DbManager::_loadStockLists(unsigned uID)
 
         // create prepared statement
         // gets stocks from Stock table, orders by ticker
-        query.prepare("SELECT * FROM StockList ORDER BY stockListName WHERE UserID = ?;");
+        query.prepare("SELECT * FROM StockList WHERE UserID = ? ORDER BY stockListName;");
 
         query.bindValue(0, userID);
 
