@@ -75,21 +75,22 @@
    </property>
    <widget class="QMenu" name="menuOptions">
     <property name="title">
-     <string>Options</string>
+     <string>Account</string>
     </property>
     <addaction name="separator"/>
-    <addaction name="actionLog_In_2"/>
+    <addaction name="separator"/>
+    <addaction name="actionLogin"/>
     <addaction name="separator"/>
     <addaction name="actionLogout"/>
-    <addaction name="actionLogout_Close_Application"/>
+    <addaction name="actionClose_Application"/>
    </widget>
    <widget class="QMenu" name="menuList">
     <property name="title">
      <string>List</string>
     </property>
     <addaction name="actionEdit"/>
+    <addaction name="actionRemove"/>
     <addaction name="actionNew"/>
-    <addaction name="actionNew_2"/>
    </widget>
    <widget class="QMenu" name="menuData">
     <property name="title">
@@ -110,24 +111,19 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionLogin">
+   <property name="text">
+    <string>Login</string>
+   </property>
+  </action>
   <action name="actionLogout">
    <property name="text">
     <string>Logout</string>
    </property>
   </action>
-  <action name="actionEdit_List">
+  <action name="actionClose_Application">
    <property name="text">
-    <string>Edit List...</string>
-   </property>
-  </action>
-  <action name="actionNew_List">
-   <property name="text">
-    <string>New List...</string>
-   </property>
-  </action>
-  <action name="actionLogout_Close_Application">
-   <property name="text">
-    <string>Logout &amp; Close Application</string>
+    <string>Close Application</string>
    </property>
   </action>
   <action name="actionEdit">
@@ -135,12 +131,12 @@
     <string>Edit</string>
    </property>
   </action>
-  <action name="actionNew">
+  <action name="actionRemove">
    <property name="text">
     <string>Remove</string>
    </property>
   </action>
-  <action name="actionNew_2">
+  <action name="actionNew">
    <property name="text">
     <string>New</string>
    </property>
@@ -148,16 +144,6 @@
   <action name="actionRefresh">
    <property name="text">
     <string>Refresh</string>
-   </property>
-  </action>
-  <action name="actionLog_Out">
-   <property name="text">
-    <string>Log Out</string>
-   </property>
-  </action>
-  <action name="actionLog_In_2">
-   <property name="text">
-    <string>Log In</string>
    </property>
   </action>
  </widget>

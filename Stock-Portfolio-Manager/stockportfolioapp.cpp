@@ -20,16 +20,16 @@ void stockportfolioapp::addStockListsToComboBox()
 {
     QStringList stockListNames;
 
-    vector<StockList> stockVec = dbm.getStockLists();
+    StockListMap lists = dbm.getStockLists();
 
-    for (auto &s : stockVec)
+    for (auto &sl : lists)
     {
-        stockListNames << QString::fromStdString(s.getStockListName());
+        StockList stockList = sl.second;
+        stockListNames << QString::fromStdString(stockList.getStockListName());
     }
 
     ui->stockListBox->clear();
     ui->stockListBox->addItems(stockListNames);
-
 }
 
 /*
@@ -54,13 +54,14 @@ stockportfolioapp::stockportfolioapp(QWidget *parent) :
     // resize the columns
     ui->stockTableView->resizeColumnsToContents();
 
+    this->openLoginDialog();
+
     // adds stock lists to the combobox
     this->addStockListsToComboBox();
 
+
     // sets message timer
     this->setMessageTimer();
-
-    this->openLoginDialog();
 }
 
 /*
@@ -71,14 +72,6 @@ stockportfolioapp::~stockportfolioapp()
     delete model;
     delete messageTimer;
     delete ui;
-}
-
-/*
- * When newListButton is clicked...
- */
-void stockportfolioapp::on_newListButton_clicked()
-{
-    this->openNewStockListDialog();
 }
 
 /*
@@ -139,7 +132,7 @@ void stockportfolioapp::openNewStockListDialog()
 /*
  * Opens the dialog for adding a new stock list
  */
-void stockportfolioapp::openLoginDialog()
+bool stockportfolioapp::openLoginDialog()
 {
     // create new dialog window object
     LoginDialog loginD(this);
@@ -156,22 +149,32 @@ void stockportfolioapp::openLoginDialog()
         UserManager um;
         um.initUser(username, password);
         um.login(username, password);
+
+        return true;
     }
+    return false;
 }
 
 /*
- * opens new stock list dialog
+ * Opens new stock list dialog from menu
  */
-void stockportfolioapp::on_actionNew_List_triggered()
+void stockportfolioapp::on_actionNew_triggered()
 {
     this->openNewStockListDialog();
 }
 
-
 /*
- * opens log in dialog
+ * Opens login dialog from menu
  */
-void stockportfolioapp::on_actionLog_In_2_triggered()
+void stockportfolioapp::on_actionLogin_triggered()
 {
     this->openLoginDialog();
+}
+
+/*
+ * Opens new stock list dialog when button clicked
+ */
+void stockportfolioapp::on_newListButton_clicked()
+{
+    this->openNewStockListDialog();
 }

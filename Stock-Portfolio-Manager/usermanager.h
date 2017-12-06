@@ -9,6 +9,7 @@
 #define USERMANAGER_H
 
 #include "user.h"
+#include "dbmanager.h"
 #include <map>
 using std::map;
 #include <string>
@@ -38,6 +39,7 @@ public:
 private:
     User user;                                          // user
     QSqlDatabase db;                                    // variable for the database
+    DbManager dbm;
     string _hashPassword(const string &);               //hash the password of the user
     bool _usernameCheck(const string &);                // checks username
     bool _passCheck(const string &);                    // checks pass

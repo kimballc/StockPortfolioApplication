@@ -30,16 +30,13 @@ QT_BEGIN_NAMESPACE
 class Ui_stockportfolioapp
 {
 public:
+    QAction *actionLogin;
     QAction *actionLogout;
-    QAction *actionEdit_List;
-    QAction *actionNew_List;
-    QAction *actionLogout_Close_Application;
+    QAction *actionClose_Application;
     QAction *actionEdit;
+    QAction *actionRemove;
     QAction *actionNew;
-    QAction *actionNew_2;
     QAction *actionRefresh;
-    QAction *actionLog_Out;
-    QAction *actionLog_In_2;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QComboBox *stockListBox;
@@ -60,26 +57,20 @@ public:
         if (stockportfolioapp->objectName().isEmpty())
             stockportfolioapp->setObjectName(QStringLiteral("stockportfolioapp"));
         stockportfolioapp->resize(1296, 968);
+        actionLogin = new QAction(stockportfolioapp);
+        actionLogin->setObjectName(QStringLiteral("actionLogin"));
         actionLogout = new QAction(stockportfolioapp);
         actionLogout->setObjectName(QStringLiteral("actionLogout"));
-        actionEdit_List = new QAction(stockportfolioapp);
-        actionEdit_List->setObjectName(QStringLiteral("actionEdit_List"));
-        actionNew_List = new QAction(stockportfolioapp);
-        actionNew_List->setObjectName(QStringLiteral("actionNew_List"));
-        actionLogout_Close_Application = new QAction(stockportfolioapp);
-        actionLogout_Close_Application->setObjectName(QStringLiteral("actionLogout_Close_Application"));
+        actionClose_Application = new QAction(stockportfolioapp);
+        actionClose_Application->setObjectName(QStringLiteral("actionClose_Application"));
         actionEdit = new QAction(stockportfolioapp);
         actionEdit->setObjectName(QStringLiteral("actionEdit"));
+        actionRemove = new QAction(stockportfolioapp);
+        actionRemove->setObjectName(QStringLiteral("actionRemove"));
         actionNew = new QAction(stockportfolioapp);
         actionNew->setObjectName(QStringLiteral("actionNew"));
-        actionNew_2 = new QAction(stockportfolioapp);
-        actionNew_2->setObjectName(QStringLiteral("actionNew_2"));
         actionRefresh = new QAction(stockportfolioapp);
         actionRefresh->setObjectName(QStringLiteral("actionRefresh"));
-        actionLog_Out = new QAction(stockportfolioapp);
-        actionLog_Out->setObjectName(QStringLiteral("actionLog_Out"));
-        actionLog_In_2 = new QAction(stockportfolioapp);
-        actionLog_In_2->setObjectName(QStringLiteral("actionLog_In_2"));
         centralWidget = new QWidget(stockportfolioapp);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
@@ -142,13 +133,14 @@ public:
         menuBar->addAction(menuList->menuAction());
         menuBar->addAction(menuData->menuAction());
         menuOptions->addSeparator();
-        menuOptions->addAction(actionLog_In_2);
+        menuOptions->addSeparator();
+        menuOptions->addAction(actionLogin);
         menuOptions->addSeparator();
         menuOptions->addAction(actionLogout);
-        menuOptions->addAction(actionLogout_Close_Application);
+        menuOptions->addAction(actionClose_Application);
         menuList->addAction(actionEdit);
+        menuList->addAction(actionRemove);
         menuList->addAction(actionNew);
-        menuList->addAction(actionNew_2);
         menuData->addAction(actionRefresh);
 
         retranslateUi(stockportfolioapp);
@@ -159,21 +151,18 @@ public:
     void retranslateUi(QMainWindow *stockportfolioapp)
     {
         stockportfolioapp->setWindowTitle(QApplication::translate("stockportfolioapp", "Stock Portfolio Manager", Q_NULLPTR));
+        actionLogin->setText(QApplication::translate("stockportfolioapp", "Login", Q_NULLPTR));
         actionLogout->setText(QApplication::translate("stockportfolioapp", "Logout", Q_NULLPTR));
-        actionEdit_List->setText(QApplication::translate("stockportfolioapp", "Edit List...", Q_NULLPTR));
-        actionNew_List->setText(QApplication::translate("stockportfolioapp", "New List...", Q_NULLPTR));
-        actionLogout_Close_Application->setText(QApplication::translate("stockportfolioapp", "Logout & Close Application", Q_NULLPTR));
+        actionClose_Application->setText(QApplication::translate("stockportfolioapp", "Close Application", Q_NULLPTR));
         actionEdit->setText(QApplication::translate("stockportfolioapp", "Edit", Q_NULLPTR));
-        actionNew->setText(QApplication::translate("stockportfolioapp", "Remove", Q_NULLPTR));
-        actionNew_2->setText(QApplication::translate("stockportfolioapp", "New", Q_NULLPTR));
+        actionRemove->setText(QApplication::translate("stockportfolioapp", "Remove", Q_NULLPTR));
+        actionNew->setText(QApplication::translate("stockportfolioapp", "New", Q_NULLPTR));
         actionRefresh->setText(QApplication::translate("stockportfolioapp", "Refresh", Q_NULLPTR));
-        actionLog_Out->setText(QApplication::translate("stockportfolioapp", "Log Out", Q_NULLPTR));
-        actionLog_In_2->setText(QApplication::translate("stockportfolioapp", "Log In", Q_NULLPTR));
         editListButton->setText(QApplication::translate("stockportfolioapp", "Edit List", Q_NULLPTR));
         refreshButton->setText(QApplication::translate("stockportfolioapp", "Refresh", Q_NULLPTR));
         newListButton->setText(QApplication::translate("stockportfolioapp", "New List", Q_NULLPTR));
         removeListButton->setText(QApplication::translate("stockportfolioapp", "Remove List", Q_NULLPTR));
-        menuOptions->setTitle(QApplication::translate("stockportfolioapp", "Options", Q_NULLPTR));
+        menuOptions->setTitle(QApplication::translate("stockportfolioapp", "Account", Q_NULLPTR));
         menuList->setTitle(QApplication::translate("stockportfolioapp", "List", Q_NULLPTR));
         menuData->setTitle(QApplication::translate("stockportfolioapp", "Data", Q_NULLPTR));
     } // retranslateUi
