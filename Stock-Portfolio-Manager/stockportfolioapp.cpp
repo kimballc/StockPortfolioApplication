@@ -35,10 +35,12 @@ void stockportfolioapp::addStockListsToComboBox()
 /*
  * Constructor
  */
-stockportfolioapp::stockportfolioapp(QWidget *parent) :
+stockportfolioapp::stockportfolioapp(QWidget *parent, unsigned uID) :
     QMainWindow(parent),
     ui(new Ui::stockportfolioapp)
 {
+    this->uID = uID;
+
     ui->setupUi(this);
 
     // create new stock model and abbly it to the table view
@@ -53,8 +55,6 @@ stockportfolioapp::stockportfolioapp(QWidget *parent) :
 
     // resize the columns
     ui->stockTableView->resizeColumnsToContents();
-
-    this->openLoginDialog();
 
     // adds stock lists to the combobox
     this->addStockListsToComboBox();
@@ -129,31 +129,7 @@ void stockportfolioapp::openNewStockListDialog()
     }
 }
 
-/*
- * Opens the dialog for adding a new stock list
- */
-bool stockportfolioapp::openLoginDialog()
-{
-    // create new dialog window object
-    LoginDialog loginD(this);
 
-    // sets modal to true, disabled while open
-    loginD.setModal(true);
-
-    // if window successfully launches...
-    if (loginD.exec() == QDialog::Accepted)
-    {
-        string username = loginD.getUsername();
-        string password = loginD.getPassword();
-
-        UserManager um;
-        um.initUser(username, password);
-        um.login(username, password);
-
-        return true;
-    }
-    return false;
-}
 
 /*
  * Opens new stock list dialog from menu
@@ -163,13 +139,13 @@ void stockportfolioapp::on_actionNew_triggered()
     this->openNewStockListDialog();
 }
 
-/*
- * Opens login dialog from menu
- */
-void stockportfolioapp::on_actionLogin_triggered()
-{
-    this->openLoginDialog();
-}
+///*
+// * Opens login dialog from menu
+// */
+//void stockportfolioapp::on_actionLogin_triggered()
+//{
+//    this->openLoginDialog();
+//}
 
 /*
  * Opens new stock list dialog when button clicked

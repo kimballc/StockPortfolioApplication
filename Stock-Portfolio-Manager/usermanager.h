@@ -39,7 +39,7 @@ public:
 private:
     User user;                                          // user
     QSqlDatabase db;                                    // variable for the database
-    DbManager dbm;
+   // DbManager dbm;
     string _hashPassword(const string &);               //hash the password of the user
     bool _usernameCheck(const string &);                // checks username
     bool _passCheck(const string &);                    // checks pass

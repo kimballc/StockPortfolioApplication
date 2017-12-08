@@ -26,7 +26,15 @@ DbManager::DbManager() : url("http://www.nasdaq.com/quotedll/quote.dll?page=dyna
     //db2.setDatabaseName("Driver={ODBC Driver 13 for SQL Server};Server=tcp:portfolio-svr.database.windows.net,1433;Database=StockPortfolioDB;Uid=cs245;Pwd=Thomas123;Encrypt=yes;MultipleActiveResultSets=True;TrustServerCertificate=no;Connection Timeout=30;");
 
     // loads stocks from database
-    //this->loadStockLists();
+    this->_loadStockLists(userID);
+}
+
+/*
+ * Sets user id
+ */
+void DbManager::setUserID(unsigned uID)
+{
+    userID = uID;
 }
 
 /*
@@ -95,7 +103,7 @@ StockList DbManager::_loadStocks(unsigned stockListID)
     StockList sl;
 
     // opens database connection
-    bool ok = true;//db.open();
+    bool ok = db.open();
 
     // if the database connection is successful...
     if(ok)
@@ -159,7 +167,7 @@ StockList DbManager::_loadStocks(unsigned stockListID)
 /*
  * Loads stock lists from db and puts them in map
  */
-void DbManager::loadStockLists(unsigned uID)
+void DbManager::_loadStockLists(unsigned uID)
 {
     unsigned userID = uID;
 
