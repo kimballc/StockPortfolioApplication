@@ -18,7 +18,7 @@ UserManager::UserManager()
 {
     //create Database connection object
     db = QSqlDatabase::addDatabase("QODBC");
-    db.setDatabaseName("Driver={ODBC Driver 13 for SQL Server};Server=tcp:portfolio-svr.database.windows.net,1433;Database=StockPortfolioDB;Uid=cs245;Pwd=Thomas123;Encrypt=yes;MultipleActiveResultSets=True;TrustServerCertificate=no;Connection Timeout=30;");
+    db.setDatabaseName("Driver={ODBC Driver 13 for SQL Server};Server=tcp:portfolio-svr.database.windows.net,1433;Database=StockPortfolioDB;Uid=cs245;Pwd=Thomas123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;");
 
 }
 
@@ -101,7 +101,7 @@ bool UserManager::login(const string &un, const string &pass)
                  //if the hashed password entered by the user matches the one in the Database for the given username
                  if(hashedPass == pw)
                  {
-                     dbm.loadStockLists(uID);
+                     user.setUserID(uID);
                      //set the ID of the user and return
                      return true;
                  }

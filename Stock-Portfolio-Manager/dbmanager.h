@@ -30,6 +30,7 @@ typedef map<string, StockList> StockListMap;
 class DbManager
 {
 private:
+    unsigned userID;                    // userID variable
     StockList stocks;                   // stock list object
     vector<Stock> stockVector;          // vector of stocks
     vector<string> nasdaqVector;        // nasdaq vector
@@ -38,6 +39,7 @@ private:
     StockListMap stockLists;            // map of stock lists
     string url;                         // url for nasdaq
     StockList _loadStocks(unsigned);    // loads the stocks from the database
+    void _loadStockLists(unsigned);     // loads stock list
 
 
 public:
@@ -46,7 +48,7 @@ public:
     vector<Stock> &getStocks();                                 // returns stock map
     void addList(const string &, vector<string>);                    // adds a new list to the map of stock lists
     StockListMap &getStockLists();                         // get stock lists
-    void loadStockLists(unsigned);     // loads stock list
+    void setUserID(unsigned);                               // sets the userid
     vector<string> splitString(const string &, char);           // chops up nasdaq data
     void nasdaq();                                              // nasdaq method
     ~DbManager();                                               // Destructor

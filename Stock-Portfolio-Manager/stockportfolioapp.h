@@ -22,7 +22,7 @@ class stockportfolioapp : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit stockportfolioapp(QWidget *parent = 0);
+    explicit stockportfolioapp(QWidget *parent = 0, unsigned uID = 0);
     ~stockportfolioapp();
 
 private slots:
@@ -30,11 +30,12 @@ private slots:
 
     void on_actionNew_triggered();
 
-    void on_actionLogin_triggered();
+    //void on_actionLogin_triggered();
 
     void on_newListButton_clicked();
 
 private:
+    unsigned uID;
     Ui::stockportfolioapp *ui;
     StockTableModel *model;
     DbManager dbm;                   // creates DbManager object
