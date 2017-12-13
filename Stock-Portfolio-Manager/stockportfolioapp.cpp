@@ -192,3 +192,10 @@ void stockportfolioapp::on_actionEdit_triggered()
 {
     this->openEditListDialog();
 }
+
+void stockportfolioapp::on_removeListButton_clicked()
+{
+    QString listName = ui->stockListBox->currentIndex();
+
+    dbm.removeList(listName);
+}

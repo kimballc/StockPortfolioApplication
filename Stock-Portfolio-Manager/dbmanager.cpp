@@ -349,7 +349,56 @@ bool DbManager::updateStock(const string &tick, double price, double change,
     return false;
 }
 
+/*
+ * Remove a stock list from the database
+ */
+void DbManager::removeList(QString listName)
+{
+    //opens the database connection
+    bool ok =db.open();
 
+    //if the database connection opens properly
+    if(ok)
+    {
+        //Build SQL query
+        QString sql;
+        sql += "SELECT stockListID FROM StockList WHERE stockListName = ?";
+
+        //prepare the query
+        QSqlQuery query;
+        query.setForwardOnly(true);
+        query.prepare(sql);
+
+        //bind value
+        query.bindValue(0, listName);
+
+        //execute the query
+        if(query.exec())
+        {
+            //get the stockListID from the result set
+            unsigned stockListID = query.value(0).toInt();
+
+            //build SQL query #2
+            QString sql2;
+            sql2 += "DELETE FROM StockList_Item WHERE stockListID = ?";
+
+            //prepare query #2
+            QSqlQuery query2;
+            query2.setForwardOnly(true);
+            query2.prepare(sql);
+
+            //bind value
+            query2.bindValue(0, stockListID);
+
+            //execute the DELETE
+            if(query2.exec())
+            {
+                //remove from the map
+                stockLists.erase(listName.toStdString());
+            }
+        }
+    }
+}
 
 /*
  * Returns stock vector

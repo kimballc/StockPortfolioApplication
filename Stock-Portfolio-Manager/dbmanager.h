@@ -47,6 +47,7 @@ public:
     bool updateStock(const string &, double, double, int, double, int); // updates stock in db and local copy
     vector<Stock> &getStocks();                                 // returns stock map
     void addList(const string &, vector<string>);                    // adds a new list to the map of stock lists
+    void removeList(QString);                               //removes a stocklist
     StockListMap &getStockLists();                         // get stock lists
     void setUserID(unsigned);                               // sets the userid
     vector<string> splitString(const string &, char);           // chops up nasdaq data
