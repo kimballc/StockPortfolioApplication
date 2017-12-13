@@ -1,5 +1,4 @@
 INPUT(
-./release\main.o
 ./release\stockportfolioapp.o
 ./release\stock.o
 ./release\stocklist.o
@@ -10,6 +9,7 @@ INPUT(
 ./release\user.o
 ./release\usermanager.o
 ./release\editlistdialog.o
+./release\main.o
 ./release\moc_stockportfolioapp.o
 ./release\moc_stocktablemodel.o
 ./release\moc_newstocklistdialog.o

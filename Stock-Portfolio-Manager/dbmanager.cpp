@@ -89,7 +89,7 @@ void DbManager::nasdaq()
  */
 void DbManager::addList(const string &name, vector<string>stockTicks)
 {
-    unsigned uID = userID;
+    unsigned uID = 1;
 
     // opens database connection
     bool ok = db.open();

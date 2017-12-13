@@ -195,7 +195,7 @@ void stockportfolioapp::on_actionEdit_triggered()
 
 void stockportfolioapp::on_removeListButton_clicked()
 {
-    QString listName = ui->stockListBox->currentIndex();
+    QString listName = ui->stockListBox->currentText();
 
     dbm.removeList(listName);
 }
