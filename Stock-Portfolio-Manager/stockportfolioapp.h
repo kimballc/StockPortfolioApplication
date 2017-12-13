@@ -38,6 +38,8 @@ private slots:
 
     void on_actionEdit_triggered();
 
+    void on_removeListButton_clicked();
+
 private:
     unsigned uID;
     Ui::stockportfolioapp *ui;
