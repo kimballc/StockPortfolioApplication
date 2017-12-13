@@ -30,6 +30,15 @@ DbManager::DbManager() : url("http://www.nasdaq.com/quotedll/quote.dll?page=dyna
 }
 
 /*
+ * loads the data
+ */
+void DbManager::loadData(unsigned uID)
+{
+    _loadStockLists(uID);
+    //_loadStocks();
+}
+
+/*
  * Sets user id
  */
 void DbManager::setUserID(unsigned uID)
@@ -82,9 +91,79 @@ void DbManager::nasdaq()
 /*
  * adds a stock list to a map and DB
  */
-void DbManager::addList(const string &, vector<string>)
+void DbManager::addList(const string &name, vector<string>stockTicks)
 {
+    unsigned uID = userID;
 
+    // opens database connection
+    bool ok = db.open();
+
+    // if the database connection is successful...
+    if(ok)
+    {
+        QString qName = QString::fromStdString(name);
+
+        // creates a query that can only be read forward
+        QSqlQuery query;
+        query.setForwardOnly(true);
+
+        QString sql;
+        sql += "INSERT INTO StockList (UserID, StockListName)";
+        sql += "VALUES (?, ?)";
+
+        // create prepared statement
+        // gets stocks from Stock table, orders by ticker
+        query.prepare(sql);
+
+        query.bindValue(0, uID);
+        query.bindValue(1, qName);
+
+        // if SQL query is okay...
+        if (query.exec())
+        {
+            QSqlQuery query2;
+            query2.setForwardOnly(true);
+
+            QString sql2;
+            sql2 += "SELECT MAX[StockListID] FROM StockList";
+
+            if (query2.exec())
+            {
+                unsigned maxID = query2.value(0).toInt();
+
+                StockList newSL;
+                newSL.setStockListName(name);
+                for (auto &s : stockTicks)
+                {
+                    Stock newStock;
+
+                    QString tick = QString::fromStdString(s);
+
+                    QSqlQuery query3;
+                    query3.setForwardOnly(true);
+
+                    QString sql3;
+                    sql3 += "INSERT INTO StockList_Item (StockID, StockListID) ";
+                    sql3 += "VALUES (?, ?);";
+
+                    query3.prepare(sql3);
+
+                    query3.bindValue(0, tick);
+                    query3.bindValue(1, maxID);
+
+                    query3.exec();
+
+                    newStock.setTicker(s);
+
+
+                    newSL.addToMap(newStock);
+                }
+                stockLists.insert(make_pair(newSL.getStockListName(), newSL));
+            }
+        }
+
+    }
+         db.close();
 }
 
 /*
@@ -161,6 +240,7 @@ StockList DbManager::_loadStocks(unsigned stockListID)
         // informs user there were connection issues
         cout << "There were issues connecting..." << endl;
     }
+    db.close();
     return sl;
 }
 
@@ -172,7 +252,7 @@ void DbManager::_loadStockLists(unsigned uID)
     unsigned userID = uID;
 
     // opens database connection
-    bool ok = true;//db.open();
+    bool ok = db.open();
 
     // if the database connection is successful...
     if(ok)
@@ -196,12 +276,10 @@ void DbManager::_loadStockLists(unsigned uID)
                 // gets data and stores it to local variables
                 unsigned stockListID = query.value(0).toInt();
                 string stockListName = query.value(1).toString().toStdString();
-                StockList sl = _loadStocks(stockListID);
 
                 // stores data into a Stock object
-
+                StockList sl;
                 sl.setStockListName(stockListName);
-
                 stockLists.insert(make_pair(sl.getStockListName(), sl));
             }
         }
@@ -213,6 +291,8 @@ void DbManager::_loadStockLists(unsigned uID)
         // informs user there were connection issues
         cout << "There were issues connecting..." << endl;
     }
+
+    db.close();
 }
 
  /*
@@ -290,5 +370,4 @@ vector<Stock> &DbManager::getStocks()
  */
 DbManager::~DbManager()
 {
-    db.close();
 }

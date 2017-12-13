@@ -11,10 +11,15 @@
 /*
  * Constructor
  */
-StockTableModel::StockTableModel(QObject *parent)
+StockTableModel::StockTableModel(vector<Stock>stockVec, QObject *parent)
     : QAbstractTableModel(parent)
 {
-    stocks = dbm.getStocks();
+    stocks = stockVec;
+}
+
+void StockTableModel::setStocks(vector<Stock>stockVec)
+{
+    stocks = stockVec;
 }
 
 /*

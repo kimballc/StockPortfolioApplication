@@ -26,11 +26,15 @@ public:
     ~LoginDialog();
     string getUsername();
     string getPassword();
+    bool getPassVerified();
+    void setPassVerified(bool);
+    unsigned getUserID();
 
 private:
     Ui::LoginDialog *ui;
     UserManager manager;
     void virtual done(int);
+    bool passVerified;
 };
 
 #endif // LOGINDIALOG_H

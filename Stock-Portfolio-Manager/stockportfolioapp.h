@@ -22,7 +22,9 @@ class stockportfolioapp : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit stockportfolioapp(QWidget *parent = 0, unsigned uID = 0);
+    explicit stockportfolioapp(QWidget *parent = 0);
+    void initGUI();
+    void loadData(unsigned);
     ~stockportfolioapp();
 
 private slots:
@@ -30,9 +32,11 @@ private slots:
 
     void on_actionNew_triggered();
 
-    //void on_actionLogin_triggered();
-
     void on_newListButton_clicked();
+
+    void on_editListButton_clicked();
+
+    void on_actionEdit_triggered();
 
 private:
     unsigned uID;
@@ -44,6 +48,7 @@ private:
     void setMessageTimer();          // sets message timer
     void openNewStockListDialog();   // opens the dialog for adding a new stock list
     bool openLoginDialog();          // opens the login dialog box
+    void openEditListDialog();       // opens the edit list dialog box
 
 };
 

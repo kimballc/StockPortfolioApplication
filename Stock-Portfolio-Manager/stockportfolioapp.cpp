@@ -8,6 +8,7 @@
 #include "ui_stockportfolioapp.h"
 #include "stockportfolioapp.h"
 #include "newstocklistdialog.h"
+#include "editlistdialog.h"
 #include "logindialog.h"
 #include "dbmanager.h"
 #include <iterator>
@@ -35,16 +36,29 @@ void stockportfolioapp::addStockListsToComboBox()
 /*
  * Constructor
  */
-stockportfolioapp::stockportfolioapp(QWidget *parent, unsigned uID) :
+stockportfolioapp::stockportfolioapp(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::stockportfolioapp)
 {
-    this->uID = uID;
-
     ui->setupUi(this);
 
+}
+
+/*
+ * Loads data
+ */
+void stockportfolioapp::loadData(unsigned uID)
+{
+    dbm.loadData(uID);
+}
+
+/*
+ * Initializes GUI
+ */
+void stockportfolioapp::initGUI()
+{
     // create new stock model and abbly it to the table view
-    model = new StockTableModel(this);
+    model = new StockTableModel(dbm.getStocks(), this);
     ui->stockTableView->setModel(model);
 
     // set table view to allow the columns to expand
@@ -58,7 +72,6 @@ stockportfolioapp::stockportfolioapp(QWidget *parent, unsigned uID) :
 
     // adds stock lists to the combobox
     this->addStockListsToComboBox();
-
 
     // sets message timer
     this->setMessageTimer();
@@ -130,7 +143,6 @@ void stockportfolioapp::openNewStockListDialog()
 }
 
 
-
 /*
  * Opens new stock list dialog from menu
  */
@@ -139,18 +151,44 @@ void stockportfolioapp::on_actionNew_triggered()
     this->openNewStockListDialog();
 }
 
-///*
-// * Opens login dialog from menu
-// */
-//void stockportfolioapp::on_actionLogin_triggered()
-//{
-//    this->openLoginDialog();
-//}
-
 /*
  * Opens new stock list dialog when button clicked
  */
 void stockportfolioapp::on_newListButton_clicked()
 {
     this->openNewStockListDialog();
+}
+
+/*
+ * opens the dialog for editing a stocklist
+ */
+void stockportfolioapp::openEditListDialog()
+{
+    // create new dialog window object
+    EditListDialog eld(this);
+
+    // sets modal to true, disabled while open
+    eld.setModal(true);
+
+    // if window successfully launches...
+    if (eld.exec() == QDialog::Accepted)
+    {
+
+    }
+}
+
+/*
+ * opens the edit stock list
+ */
+void stockportfolioapp::on_editListButton_clicked()
+{
+    this->openEditListDialog();
+}
+
+/*
+ * opens the edit stock list dialog menu
+ */
+void stockportfolioapp::on_actionEdit_triggered()
+{
+    this->openEditListDialog();
 }
