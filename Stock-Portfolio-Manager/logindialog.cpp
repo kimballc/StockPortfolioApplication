@@ -16,8 +16,13 @@ LoginDialog::LoginDialog(QWidget *parent) :
     ui(new Ui::LoginDialog)
 {
     ui->setupUi(this);
-
+    passVerified = false;
     manager.initUser(this->getUsername(), this->getPassword());
+}
+
+unsigned LoginDialog::getUserID()
+{
+    return manager.getUser().getUserID();
 }
 
 LoginDialog::~LoginDialog()
@@ -79,4 +84,20 @@ void LoginDialog::done(int result)
     {
         QDialog::done(result);
     }
+}
+
+/*
+ * Sets whether password was verified
+ */
+void LoginDialog::setPassVerified(bool ver)
+{
+    passVerified = ver;
+}
+
+/*
+ * Gets whether password was verified
+ */
+bool LoginDialog::getPassVerified()
+{
+    return passVerified;
 }

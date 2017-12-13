@@ -33,7 +33,8 @@ SOURCES += \
     newstocklistdialog.cpp \
     logindialog.cpp \
     user.cpp \
-    usermanager.cpp
+    usermanager.cpp \
+    editlistdialog.cpp
 
 HEADERS += \
         stockportfolioapp.h \
@@ -44,9 +45,11 @@ HEADERS += \
     newstocklistdialog.h \
     logindialog.h \
     user.h \
-    usermanager.h
+    usermanager.h \
+    editlistdialog.h
 
 FORMS += \
         stockportfolioapp.ui \
     newstocklistdialog.ui \
-    logindialog.ui
+    logindialog.ui \
+    editlistdialog.ui

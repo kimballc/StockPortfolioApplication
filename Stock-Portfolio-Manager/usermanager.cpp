@@ -31,8 +31,6 @@ UserManager::UserManager()
  */
 UserManager::~UserManager()
 {
-    //Database
-    db.close();
 }
 
 /*
@@ -113,6 +111,7 @@ bool UserManager::login(const string &un, const string &pass)
              }
 
         }
+         db.close();
     }
     // if connection is not successful...
     else
@@ -120,6 +119,9 @@ bool UserManager::login(const string &un, const string &pass)
         // informs user there were connection issues
         cout << "There were issues connecting..." << endl;
     }
+
+    //Database
+    db.close();
     return false;
 }
 
