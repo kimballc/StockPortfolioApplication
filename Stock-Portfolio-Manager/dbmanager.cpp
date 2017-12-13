@@ -6,6 +6,8 @@
 */
 
 #include "dbmanager.h"
+#include <QDebug>
+#include <QSqlError>
 #include <sstream>
 using std::istringstream;
 #include <iostream>
@@ -19,14 +21,7 @@ DbManager::DbManager() : url("http://www.nasdaq.com/quotedll/quote.dll?page=dyna
 {
     // creates a dabase connection object
     db = QSqlDatabase::addDatabase("QODBC");
-    db.setDatabaseName("Driver={ODBC Driver 13 for SQL Server};Server=tcp:portfolio-svr.database.windows.net,1433;Database=StockPortfolioDB;Uid=cs245;Pwd=Thomas123;Encrypt=yes;MultipleActiveResultSets=True;TrustServerCertificate=no;Connection Timeout=30;");
-
-    // creates a second dabase connection object
-    //db2 = QSqlDatabase::addDatabase("QODBC");
-    //db2.setDatabaseName("Driver={ODBC Driver 13 for SQL Server};Server=tcp:portfolio-svr.database.windows.net,1433;Database=StockPortfolioDB;Uid=cs245;Pwd=Thomas123;Encrypt=yes;MultipleActiveResultSets=True;TrustServerCertificate=no;Connection Timeout=30;");
-
-    // loads stocks from database
-    this->_loadStockLists(userID);
+    db.setDatabaseName("Driver={ODBC Driver 13 for SQL Server};Server=tcp:portfolio-svr.database.windows.net,1433;Database=StockPortfolioDB;Uid=cs245;Pwd=Thomas123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;");
 }
 
 /*
@@ -85,7 +80,8 @@ void DbManager::nasdaq()
     // store the entire response in a QString
     string html = reply->readAll().toStdString();
 
-    nasdaqVector = splitString(html, '|');
+    nasdaqVector = splitString(html, '*');
+
 }
 
 /*
@@ -251,8 +247,13 @@ void DbManager::_loadStockLists(unsigned uID)
 {
     unsigned userID = uID;
 
+    bool ok;
     // opens database connection
-    bool ok = db.open();
+    ok = db.open();
+
+    qDebug() << "DB status:" << db.databaseName() << "=" << ok;
+    qDebug() << "DB Last Error:" << db.lastError();
+
 
     // if the database connection is successful...
     if(ok)
@@ -337,15 +338,17 @@ bool DbManager::updateStock(const string &tick, double price, double change,
         // execute the UPDATE
         if(query.exec())
         {
+            db.close();
             return true;
         }
 
     }
     else
     {
+        db.close();
         return false;
     }
-
+    db.close();
     return false;
 }
 

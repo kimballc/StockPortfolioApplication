@@ -16,12 +16,10 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QGridLayout>
-#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSpacerItem>
 
 QT_BEGIN_NAMESPACE
 
@@ -30,12 +28,11 @@ class Ui_EditListDialog
 public:
     QGridLayout *gridLayout;
     QLabel *titleLabel;
-    QSpacerItem *horizontalSpacer;
     QDialogButtonBox *buttonBox;
-    QPushButton *addStockButton;
-    QGroupBox *infoGroupBox;
     QListView *stockListView;
     QPushButton *removeStockButton;
+    QPushButton *addStockButton;
+    QLabel *stockListNameLabel;
 
     void setupUi(QDialog *EditListDialog)
     {
@@ -50,41 +47,43 @@ public:
         titleLabel->setObjectName(QStringLiteral("titleLabel"));
         QFont font;
         font.setFamily(QStringLiteral("Cambria"));
-        font.setPointSize(16);
+        font.setPointSize(22);
         titleLabel->setFont(font);
+        titleLabel->setAlignment(Qt::AlignCenter);
 
         gridLayout->addWidget(titleLabel, 0, 0, 1, 1);
-
-        horizontalSpacer = new QSpacerItem(277, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer, 0, 1, 1, 2);
 
         buttonBox = new QDialogButtonBox(EditListDialog);
         buttonBox->setObjectName(QStringLiteral("buttonBox"));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
 
-        gridLayout->addWidget(buttonBox, 6, 0, 1, 3);
+        gridLayout->addWidget(buttonBox, 6, 0, 1, 2);
+
+        stockListView = new QListView(EditListDialog);
+        stockListView->setObjectName(QStringLiteral("stockListView"));
+
+        gridLayout->addWidget(stockListView, 2, 0, 1, 1);
+
+        removeStockButton = new QPushButton(EditListDialog);
+        removeStockButton->setObjectName(QStringLiteral("removeStockButton"));
+
+        gridLayout->addWidget(removeStockButton, 4, 0, 1, 1);
 
         addStockButton = new QPushButton(EditListDialog);
         addStockButton->setObjectName(QStringLiteral("addStockButton"));
 
         gridLayout->addWidget(addStockButton, 3, 0, 1, 1);
 
-        infoGroupBox = new QGroupBox(EditListDialog);
-        infoGroupBox->setObjectName(QStringLiteral("infoGroupBox"));
+        stockListNameLabel = new QLabel(EditListDialog);
+        stockListNameLabel->setObjectName(QStringLiteral("stockListNameLabel"));
+        QFont font1;
+        font1.setFamily(QStringLiteral("Cambria"));
+        font1.setPointSize(16);
+        stockListNameLabel->setFont(font1);
+        stockListNameLabel->setAlignment(Qt::AlignCenter);
 
-        gridLayout->addWidget(infoGroupBox, 1, 1, 4, 2);
-
-        stockListView = new QListView(EditListDialog);
-        stockListView->setObjectName(QStringLiteral("stockListView"));
-
-        gridLayout->addWidget(stockListView, 1, 0, 1, 1);
-
-        removeStockButton = new QPushButton(EditListDialog);
-        removeStockButton->setObjectName(QStringLiteral("removeStockButton"));
-
-        gridLayout->addWidget(removeStockButton, 4, 0, 1, 1);
+        gridLayout->addWidget(stockListNameLabel, 1, 0, 1, 1);
 
 
         retranslateUi(EditListDialog);
@@ -97,10 +96,10 @@ public:
     void retranslateUi(QDialog *EditListDialog)
     {
         EditListDialog->setWindowTitle(QApplication::translate("EditListDialog", "Edit List", Q_NULLPTR));
-        titleLabel->setText(QApplication::translate("EditListDialog", "Edit List", Q_NULLPTR));
-        addStockButton->setText(QApplication::translate("EditListDialog", "Add Stock...", Q_NULLPTR));
-        infoGroupBox->setTitle(QApplication::translate("EditListDialog", "GroupBox", Q_NULLPTR));
+        titleLabel->setText(QApplication::translate("EditListDialog", "Edit Stock List", Q_NULLPTR));
         removeStockButton->setText(QApplication::translate("EditListDialog", "Remove Stock...", Q_NULLPTR));
+        addStockButton->setText(QApplication::translate("EditListDialog", "Add Stock...", Q_NULLPTR));
+        stockListNameLabel->setText(QApplication::translate("EditListDialog", "TextLabel", Q_NULLPTR));
     } // retranslateUi
 
 };

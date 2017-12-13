@@ -31,6 +31,7 @@ UserManager::UserManager()
  */
 UserManager::~UserManager()
 {
+    db.close();
 }
 
 /*
@@ -111,7 +112,6 @@ bool UserManager::login(const string &un, const string &pass)
              }
 
         }
-         db.close();
     }
     // if connection is not successful...
     else
@@ -121,7 +121,6 @@ bool UserManager::login(const string &un, const string &pass)
     }
 
     //Database
-    db.close();
     return false;
 }
 
@@ -134,91 +133,91 @@ void UserManager::initUser(const string &name, const string &pass)
     user.setPassHash(pass);
 }
 
-/*
- * checks username
- */
-bool UserManager::_usernameCheck(const string &name)
-{
-    //requirements flag variables
-    bool hasUpper = false;
-    bool hasLower = false;
-    bool hasDigit = false;
-    bool hasSpecial = false;
+///*
+// * checks username
+// */
+//bool UserManager::_usernameCheck(const string &name)
+//{
+//    //requirements flag variables
+//    bool hasUpper = false;
+//    bool hasLower = false;
+//    bool hasDigit = false;
+//    bool hasSpecial = false;
 
-    //usernames must be b/w 6-16 characters long
-    if((name.length() < 6) || (name.length() > 16))
-    {
-        throw std::length_error("Username must be between 6-16 characters long");
-    }
+//    //usernames must be b/w 6-16 characters long
+//    if((name.length() < 6) || (name.length() > 16))
+//    {
+//        throw std::length_error("Username must be between 6-16 characters long");
+//    }
 
-    //loop through the username to check for requirments
-    for(char c : name)
-    {
-        //check for uppercase
-        if(isupper(c))
-        {
-            hasUpper = true;
-        }
+//    //loop through the username to check for requirments
+//    for(char c : name)
+//    {
+//        //check for uppercase
+//        if(isupper(c))
+//        {
+//            hasUpper = true;
+//        }
 
-        //check for lowercase
-        if(islower(c))
-        {
-            hasLower = true;
-        }
+//        //check for lowercase
+//        if(islower(c))
+//        {
+//            hasLower = true;
+//        }
 
-        //check for digit
-        if(isdigit(c))
-        {
-            hasDigit = true;
-        }
+//        //check for digit
+//        if(isdigit(c))
+//        {
+//            hasDigit = true;
+//        }
 
-        //check for special characters
-        if(!isalnum(c))
-        {
-            hasSpecial = true;
-        }
-    }
+//        //check for special characters
+//        if(!isalnum(c))
+//        {
+//            hasSpecial = true;
+//        }
+//    }
 
-    //usernames must contain at least 1 uppercase character
-    if(hasUpper == false)
-    {
-        throw std::invalid_argument("Username must contain at least 1 uppercase letter");
-    }
+//    //usernames must contain at least 1 uppercase character
+//    if(hasUpper == false)
+//    {
+//        throw std::invalid_argument("Username must contain at least 1 uppercase letter");
+//    }
 
-    //usernames must contain at least 1 lowercase character
-    if(hasLower == false)
-    {
-        throw std::invalid_argument("Username must contain at least 1 lower case letter");
-    }
+//    //usernames must contain at least 1 lowercase character
+//    if(hasLower == false)
+//    {
+//        throw std::invalid_argument("Username must contain at least 1 lower case letter");
+//    }
 
-    //usernames must contain at least 1 digit
-    if(hasDigit == false)
-    {
-        throw std::invalid_argument("Username must contain at least 1 digit");
-    }
+//    //usernames must contain at least 1 digit
+//    if(hasDigit == false)
+//    {
+//        throw std::invalid_argument("Username must contain at least 1 digit");
+//    }
 
-    //usernames may not contain special characters
-    if(hasSpecial == true)
-    {
-        throw std::invalid_argument("Username may not contain any special characters");
-    }
+//    //usernames may not contain special characters
+//    if(hasSpecial == true)
+//    {
+//        throw std::invalid_argument("Username may not contain any special characters");
+//    }
 
-    if (hasUpper == true && hasLower == true && hasDigit == true && hasSpecial == false)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
+//    if (hasUpper == true && hasLower == true && hasDigit == true && hasSpecial == false)
+//    {
+//        return true;
+//    }
+//    else
+//    {
+//        return false;
+//    }
+//}
 
-bool UserManager::_passCheck(const string &pass)
-{
-    if(pass.empty())
-    {
-        throw std::invalid_argument("Hashed Password may not be blank");
-        return false;
-    }
-    return true;
-}
+//bool UserManager::_passCheck(const string &pass)
+//{
+//    if(pass.empty())
+//    {
+//        throw std::invalid_argument("Hashed Password may not be blank");
+//        return false;
+//    }
+//    return true;
+//}
