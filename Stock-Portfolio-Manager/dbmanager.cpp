@@ -398,6 +398,9 @@ void DbManager::removeList(QString listName)
             }
         }
     }
+
+    //close db connection
+    db.close();
 }
 
 /*
