@@ -32,8 +32,8 @@ public:
     QLabel *newStockListLabel;
     QGroupBox *groupBox;
     QFormLayout *formLayout;
-    QLineEdit *tickersAddBox;
     QLineEdit *stockListNameBox;
+    QLineEdit *tickersAddBox;
     QLabel *tickerAddLabel;
     QLabel *stockListNameLabel;
     QSpacerItem *horizontalSpacer;
@@ -71,19 +71,19 @@ public:
         groupBox->setFont(font1);
         formLayout = new QFormLayout(groupBox);
         formLayout->setObjectName(QStringLiteral("formLayout"));
-        tickersAddBox = new QLineEdit(groupBox);
-        tickersAddBox->setObjectName(QStringLiteral("tickersAddBox"));
-        tickersAddBox->setMinimumSize(QSize(0, 30));
-        tickersAddBox->setMaximumSize(QSize(16777215, 30));
-
-        formLayout->setWidget(4, QFormLayout::FieldRole, tickersAddBox);
-
         stockListNameBox = new QLineEdit(groupBox);
         stockListNameBox->setObjectName(QStringLiteral("stockListNameBox"));
         stockListNameBox->setMinimumSize(QSize(0, 30));
         stockListNameBox->setMaximumSize(QSize(16777215, 30));
 
-        formLayout->setWidget(7, QFormLayout::FieldRole, stockListNameBox);
+        formLayout->setWidget(4, QFormLayout::FieldRole, stockListNameBox);
+
+        tickersAddBox = new QLineEdit(groupBox);
+        tickersAddBox->setObjectName(QStringLiteral("tickersAddBox"));
+        tickersAddBox->setMinimumSize(QSize(0, 30));
+        tickersAddBox->setMaximumSize(QSize(16777215, 30));
+
+        formLayout->setWidget(7, QFormLayout::FieldRole, tickersAddBox);
 
         tickerAddLabel = new QLabel(groupBox);
         tickerAddLabel->setObjectName(QStringLiteral("tickerAddLabel"));

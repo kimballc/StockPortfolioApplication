@@ -30,7 +30,7 @@ typedef map<string, StockList> StockListMap;
 class DbManager
 {
 private:
-    unsigned userID;                    // userID variable
+    unsigned userID;                // userID variable
     StockList stocks;                   // stock list object
     vector<Stock> stockVector;          // vector of stocks
     vector<string> nasdaqVector;        // nasdaq vector
