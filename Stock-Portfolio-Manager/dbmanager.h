@@ -35,7 +35,6 @@ private:
     vector<Stock> stockVector;          // vector of stocks
     vector<string> nasdaqVector;        // nasdaq vector
     QSqlDatabase db;                    // variable for the database
-    //QSqlDatabase db2;                   // variable for second db
     StockListMap stockLists;            // map of stock lists
     string url;                         // url for nasdaq
     StockList _loadStocks(unsigned);    // loads the stocks from the database
