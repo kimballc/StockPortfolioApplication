@@ -165,7 +165,7 @@ void stockportfolioapp::on_newListButton_clicked()
 void stockportfolioapp::openEditListDialog()
 {
     // create new dialog window object
-    EditListDialog eld(this);
+    EditListDialog eld(dbm.getStocks(), this);
 
     // sets modal to true, disabled while open
     eld.setModal(true);
