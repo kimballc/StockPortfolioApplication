@@ -24,7 +24,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
         stockportfolioapp.cpp \
     stock.cpp \
     stocklist.cpp \
@@ -34,7 +33,9 @@ SOURCES += \
     logindialog.cpp \
     user.cpp \
     usermanager.cpp \
-    editlistdialog.cpp
+    editlistdialog.cpp \
+    main.cpp \
+    stocklistmodel.cpp
 
 HEADERS += \
         stockportfolioapp.h \
@@ -46,7 +47,8 @@ HEADERS += \
     logindialog.h \
     user.h \
     usermanager.h \
-    editlistdialog.h
+    editlistdialog.h \
+    stocklistmodel.h
 
 FORMS += \
         stockportfolioapp.ui \
