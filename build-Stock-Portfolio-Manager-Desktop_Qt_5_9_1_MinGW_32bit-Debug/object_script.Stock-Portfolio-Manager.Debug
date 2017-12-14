@@ -10,9 +10,11 @@ INPUT(
 ./debug\usermanager.o
 ./debug\editlistdialog.o
 ./debug\main.o
+./debug\stocklistmodel.o
 ./debug\moc_stockportfolioapp.o
 ./debug\moc_stocktablemodel.o
 ./debug\moc_newstocklistdialog.o
 ./debug\moc_logindialog.o
 ./debug\moc_editlistdialog.o
+./debug\moc_stocklistmodel.o
 );

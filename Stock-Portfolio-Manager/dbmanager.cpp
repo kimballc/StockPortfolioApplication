@@ -19,9 +19,7 @@ using std::cout; using std::endl;
  */
 DbManager::DbManager() : url("http://www.nasdaq.com/quotedll/quote.dll?page=dynamic&mode=data&&symbol=WEX&symbol=IDXX&random=0.1696504272217375")
 {
-    // creates a dabase connection object
-    db = QSqlDatabase::addDatabase("QODBC");
-    db.setDatabaseName("Driver={ODBC Driver 13 for SQL Server};Server=tcp:portfolio-svr.database.windows.net,1433;Database=StockPortfolioDB;Uid=cs245;Pwd=Thomas123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;");
+
 }
 
 /*
@@ -29,6 +27,10 @@ DbManager::DbManager() : url("http://www.nasdaq.com/quotedll/quote.dll?page=dyna
  */
 void DbManager::loadData(unsigned uID)
 {
+    // creates a dabase connection object
+    db = QSqlDatabase::addDatabase("QODBC");
+    db.setDatabaseName("Driver={ODBC Driver 13 for SQL Server};Server=tcp:portfolio-svr.database.windows.net,1433;Database=StockPortfolioDB;Uid=cs245;Pwd=Thomas123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;");
+
     _loadStockLists(uID);
     //_loadStocks();
 }
@@ -121,7 +123,9 @@ void DbManager::addList(const string &name, vector<string>stockTicks)
             query2.setForwardOnly(true);
 
             QString sql2;
-            sql2 += "SELECT MAX[StockListID] FROM StockList";
+            sql2 += "SELECT MAX(StockListID) FROM StockList;";
+
+            query2.prepare(sql2);
 
             if (query2.exec())
             {
