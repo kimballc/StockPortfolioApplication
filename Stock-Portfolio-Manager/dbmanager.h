@@ -37,14 +37,14 @@ private:
     QSqlDatabase db;                    // variable for the database
     StockListMap stockLists;            // map of stock lists
     string url;                         // url for nasdaq
-    StockList _loadStocks(unsigned);    // loads the stocks from the database
+    StockList _loadStocks();    // loads the stocks from the database
     void _loadStockLists(unsigned);     // loads stock list
 
 
 public:
     DbManager();                                                // constructor
     bool updateStock(const string &, double, double, int, double, int); // updates stock in db and local copy
-    vector<Stock> &getStocks();                                 // returns stock map
+    StockList &getStocks();                                 // returns stock map
     void addList(const string &, vector<string>);                    // adds a new list to the map of stock lists
     void removeList(QString);                               //removes a stocklist
     StockList* findList(const string &);

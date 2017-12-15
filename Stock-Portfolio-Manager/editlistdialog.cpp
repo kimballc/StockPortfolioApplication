@@ -1,7 +1,7 @@
 #include "editlistdialog.h"
 #include "ui_editlistdialog.h"
 
-EditListDialog::EditListDialog(vector<Stock> &stocks, QWidget *parent) :
+EditListDialog::EditListDialog(StockList &stocks, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::EditListDialog)
 {
@@ -21,12 +21,3 @@ EditListDialog::~EditListDialog()
     delete listModel;
     delete ui;
 }
-
-//void EditListDialog::showStock(vector<Stock> stocks, const QModelIndex &index)
-//{
-//    for (auto s : stocks)
-//    {
-
-//    }
-//}
-

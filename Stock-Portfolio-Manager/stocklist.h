@@ -22,6 +22,7 @@ class StockList
 private:
     string stockListName;   // stores a name of the stock list
     StockMap stocks;        // stores a map of Stock objects
+    unsigned stockListID;
 
 public:
     StockList();                            // default constructor
@@ -31,6 +32,8 @@ public:
     void removeFromMap(Stock);              // removes a stock from the map
     Stock *findStock(const string &);       // finds and returns the stock
 
+    unsigned getStockListID();
+    void setStockListID(unsigned);
     string getStockListName() const;              // returns the stocklist name
     StockMap &getStocks();                  // returns the whole stock map
 

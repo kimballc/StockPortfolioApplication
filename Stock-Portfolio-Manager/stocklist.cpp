@@ -27,6 +27,16 @@ StockList::StockList(const string &name) :
 
 }
 
+unsigned StockList::getStockListID()
+{
+    return stockListID;
+}
+
+void StockList::setStockListID(unsigned id)
+{
+    stockListID = id;
+}
+
 /*
  * Adds new stock to the map
  */
