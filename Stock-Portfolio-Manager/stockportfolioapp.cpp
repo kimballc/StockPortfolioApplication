@@ -15,25 +15,6 @@
 using std::iterator;
 
 /*
- * Adds stock lists to combo boxes
- */
-void stockportfolioapp::addStockListsToComboBox()
-{
-    QStringList stockListNames;
-
-    StockListMap lists = dbm.getStockLists();
-
-    for (auto &sl : lists)
-    {
-        StockList stockList = sl.second;
-        stockListNames << QString::fromStdString(stockList.getStockListName());
-    }
-
-    ui->stockListBox->clear();
-    ui->stockListBox->addItems(stockListNames);
-}
-
-/*
  * Constructor
  */
 stockportfolioapp::stockportfolioapp(QWidget *parent) :
@@ -70,11 +51,10 @@ void stockportfolioapp::initGUI()
     // resize the columns
     ui->stockTableView->resizeColumnsToContents();
 
-    // adds stock lists to the combobox
-    this->addStockListsToComboBox();
-
     // sets message timer
     this->setMessageTimer();
+
+    this->addToCombo();
 }
 
 /*
@@ -128,7 +108,7 @@ void stockportfolioapp::openNewStockListDialog()
         dbm.addList(name, ticks);
 
         // adds to combo box
-        this->addStockListsToComboBox();
+        this->addToCombo();
 
         // creates index
         int index = ui->stockListBox->findText(QString::fromStdString(name));
@@ -198,4 +178,23 @@ void stockportfolioapp::on_removeListButton_clicked()
     QString listName = ui->stockListBox->currentText();
 
     dbm.removeList(listName);
+}
+
+/*
+ * adds stock list name to combo
+ */
+void stockportfolioapp::addToCombo()
+{
+    QStringList stockListNames;
+
+    StockListMap lists = dbm.getStockLists();
+
+    for (auto &sl : lists)
+    {
+        string stockListName = sl.first;
+        stockListNames << QString::fromStdString(stockListName);
+    }
+
+    ui->stockListBox->clear();
+    ui->stockListBox->addItems(stockListNames);
 }
