@@ -428,6 +428,27 @@ StockList &DbManager::getStocks()
 }
 
 /*
+ * Find a stock list by name
+ */
+StockList* DbManager::findList(const std::string &listName)
+{
+    auto it = stockLists.find(listName);
+
+    if(it == stockLists.end())
+    {
+        return nullptr;
+    }
+
+    StockList list = it->second;
+    return &list;
+}
+
+void DbManager::addStockToList(const std::string &tick)
+{
+
+}
+
+/*
  * Destructor
  */
 DbManager::~DbManager()
