@@ -1,9 +1,19 @@
 #include "stocklistmodel.h"
 
-StockListModel::StockListModel(vector<Stock> &stocks, QObject *parent)
-    : QAbstractListModel(parent), stocks(stocks)
+StockListModel::StockListModel(StockList &stocks, QObject *parent)
+    : QAbstractListModel(parent)
 {
+    setStocks(stocks);
+}
 
+void StockListModel::setStocks(StockList stockList)
+{
+    StockMap sm = stockList.getStocks();
+    for (auto s : sm)
+    {
+        Stock stock = s.second;
+        stocks.push_back(stock);
+    }
 }
 
 int StockListModel::rowCount(const QModelIndex &parent) const

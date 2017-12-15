@@ -46,6 +46,7 @@ private:
     StockTableModel *model;
     DbManager dbm;                   // creates DbManager object
     QTimer *messageTimer;            // message timer variable
+    void addToCombo();
     void addStockListsToComboBox();  // adds the stocklists to the drop-down
     void setMessageTimer();          // sets message timer
     void openNewStockListDialog();   // opens the dialog for adding a new stock list
