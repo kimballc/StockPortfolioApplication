@@ -47,6 +47,8 @@ public:
     vector<Stock> &getStocks();                                 // returns stock map
     void addList(const string &, vector<string>);                    // adds a new list to the map of stock lists
     void removeList(QString);                               //removes a stocklist
+    StockList* findList(const string &);
+    void addStockToList(const string &);
     StockListMap &getStockLists();                         // get stock lists
     void setUserID(unsigned);                               // sets the userid
     vector<string> splitString(const string &, char);           // chops up nasdaq data
