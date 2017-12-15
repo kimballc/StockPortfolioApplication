@@ -11,15 +11,20 @@
 /*
  * Constructor
  */
-StockTableModel::StockTableModel(vector<Stock>stockVec, QObject *parent)
+StockTableModel::StockTableModel(StockList stockList, QObject *parent)
     : QAbstractTableModel(parent)
 {
-    stocks = stockVec;
+    setStocks(stockList);
 }
 
-void StockTableModel::setStocks(vector<Stock>stockVec)
+void StockTableModel::setStocks(StockList stockList)
 {
-    stocks = stockVec;
+    StockMap sm = stockList.getStocks();
+    for (auto s : sm)
+    {
+        Stock stock = s.second;
+        stocks.push_back(stock);
+    }
 }
 
 /*

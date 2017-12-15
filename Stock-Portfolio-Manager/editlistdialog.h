@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "stocklistmodel.h"
+#include "stocklist.h"
 
 namespace Ui {
 class EditListDialog;
@@ -13,7 +14,7 @@ class EditListDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit EditListDialog(vector<Stock> &, QWidget *parent = 0);
+    explicit EditListDialog(StockList &, QWidget *parent = 0);
     ~EditListDialog();
 
 private:
